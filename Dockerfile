@@ -13,6 +13,10 @@ RUN apt-get update && apt-get -y upgrade && DEBIAN_FRONTEND=noninteractive apt-g
 RUN a2enmod php7.0
 RUN a2enmod rewrite
 
+RUN ln -s /usr/bin/nodejs /usr/bin/node
+RUN npm install gulp-cli -g && npm install -g bower
+RUN npm install gulp gulp-uglify gulp-rename gulp-concat gulp-header gulp-minify-css gulp-watch
+
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/7.0/apache2/php.ini
 RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php/7.0/apache2/php.ini
