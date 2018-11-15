@@ -1,0 +1,21 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: read_gurbani_root_password
+      MYSQL_DATABASE: read_gurbani_db
+      MYSQL_USER: read_gurbami_admin
+      MYSQL_PASSWORD: read_gurbani_password
+  web:
+    build: .
+    volumes:
+        - ./:/var/www/site
+    ports:
+      - 8080:80
+    environment:
+      APP_DEBUG: "true"
+    links:
+      - mysql
