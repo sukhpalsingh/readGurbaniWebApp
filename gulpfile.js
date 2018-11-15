@@ -12,6 +12,7 @@ var gulp = require('gulp'),
 gulp.task('scripts', function() {
     gulp.src([
         'node_modules/jquery/dist/jquery.js',
+        'node_modules/what-input/dist/what-input.js',
         'node_modules/bootstrap/dist/js/bootstrap.js',
     ])
         .pipe(concat('lib.js')) // cancatenation to file lib.js
@@ -24,7 +25,6 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
     gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.css',
-        'node_modules/bootstrap/dist/css/bootstrap-theme.css',
     ])
         .pipe(concat('lib.css')) // concatenation to file lib.css
         .pipe(minifyCSS({keepBreaks:false})) // minifying file

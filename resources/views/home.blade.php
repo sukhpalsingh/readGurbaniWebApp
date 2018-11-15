@@ -1,33 +1,74 @@
 <!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<html class="no-js" lang="{{ app()->getLocale() }}">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <title>Read Gurbani</title>
+    <title>Read Gurbani</title>
 
-        <!-- Styles -->
-        <link href="/css/lib.min.css" rel="stylesheet" type="text/css">
-        <link href="/css/app.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/lib.min.css" rel="stylesheet" type="text/css">
+    <link href="/css/app.min.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <header>
+            <nav class="navbar navbar-expand-lg navbar-white">
+            <div class="container">
+            <a class="navbar-brand" href="#">Read Gurbani</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <!-- Scripts -->
-        <script src="/js/lib.min.js" type="text/javascript"></script>
-    </head>
-    <body>
-        <div class="btn-toolbar text-center" role="toolbar" aria-label="...">
-            <div class="btn-group float-left" role="group" aria-label="...">
-                <button type="button" class="btn btn-success">Read Gurbani</button>
-            </div>
-            <div class="btn-group float-left" role="group" aria-label="...">
-                <button type="button" class="btn btn-success">Search Gurbani</button>
-            </div>
-            <div class="btn-group float-left" role="group" aria-label="...">
-                <button type="button" class="btn btn-success">Gurbani Kirtan</button>
-            </div>
-            <div class="btn-group float-left" role="group" aria-label="...">
-                <button type="button" class="btn btn-success">Gurbani Katha</button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Read</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Listen</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Search</a>
+                </li>
+                </ul>
+                <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
             </div>
         </div>
-    </body>
+            </nav>
+    </header>
+    <div class="container mt-5 mb-5">
+        <div class="row">
+            <div class="col-sm-8">
+                <div class="card text-center">
+                    <img class="card-img-top" src="images/gurbani_bg1.jpeg" alt="Card image cap">
+                    <div class="card-body">
+                        <h2>
+                            <a href="">Read Gurbani</a>
+                        </h2>
+                        <p class="card-text">Read gurbani is a healing process. Guru's teaching purify your body and soul.</p>
+                        <div class="text-center text-uppercase">
+                            <a href="#" class="btn btn-default btn-1">Continue reading</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-text-1 text-uppercase text-center">Recent Kirtan</h4>
+                        <p class="card-text"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/lib.min.js" type="text/javascript"></script>
+  </body>
 </html>
