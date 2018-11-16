@@ -50,11 +50,23 @@
                     <img class="card-img-top" src="images/gurbani_bg1.jpeg" alt="Card image cap">
                     <div class="card-body">
                         <h2>
-                            <a href="">Read Gurbani</a>
+                            <a href="/read">Read Gurbani</a>
                         </h2>
                         <p class="card-text">Read gurbani is a healing process. Guru's teaching purify your body and soul.</p>
                         <div class="text-center text-uppercase">
-                            <a href="#" class="btn btn-default btn-1">Continue reading</a>
+                            <a href="/read" class="btn btn-default btn-1">Start reading</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="card text-center mt-5">
+                    <img class="card-img-top" src="images/gurbnai_kirtan_bg.jpeg" alt="Gurbani Kirtan">
+                    <div class="card-body">
+                        <h2>
+                            <a href="/listen">Gurbani Kirtan</a>
+                        </h2>
+                        <p class="card-text">Listen to gurbani now and get peace within your mind and soul.</p>
+                        <div class="text-center text-uppercase">
+                            <a href="listen" class="btn btn-default btn-1">Start listening</a>
                         </div>
                     </div>
                 </div>
