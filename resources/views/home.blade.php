@@ -1,87 +1,59 @@
-<!doctype html>
-<html class="no-js" lang="{{ app()->getLocale() }}">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+@extends('layouts.app')
 
-    <title>Read Gurbani</title>
+@section('content')
 
-    <link href="/css/lib.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/app.min.css" rel="stylesheet" type="text/css">
-  </head>
-  <body>
-    <header>
-            <nav class="navbar navbar-expand-lg navbar-white">
-            <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="images/logo.png" style="height: 60px;" /> <span style="font-weight: bold; font-size: 20px;">Gurbani</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-                <ul class="navbar-nav mr-auto mt-3 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/read">Read</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="listen">Listen</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/search">Search</a>
-                </li>
-                </ul>
-                <form class="form-inline my-2 my-lg-0">
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search">
-                </form>
+<div class="container mt-5 mb-5">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="card text-center">
+                <img class="card-img-top" src="images/gurbani_bg1.jpeg" alt="Card image cap">
+                <div class="card-body">
+                    <h2>
+                        <a href="/read">Read Gurbani</a>
+                    </h2>
+                    <p class="card-text">Read gurbani is a healing process. Guru's teaching purify your body and soul.</p>
+                    <div class="text-center text-uppercase">
+                        <a href="/read" class="btn btn-default btn-1">Start reading</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card text-center mt-5">
+                <img class="card-img-top" src="images/gurbnai_kirtan_bg.jpeg" alt="Gurbani Kirtan">
+                <div class="card-body">
+                    <h2>
+                        <a href="/listen">Gurbani Kirtan</a>
+                    </h2>
+                    <p class="card-text">Listen to gurbani now and get peace within your mind and soul.</p>
+                    <div class="text-center text-uppercase">
+                        <a href="listen" class="btn btn-default btn-1">Start listening</a>
+                    </div>
+                </div>
             </div>
         </div>
-            </nav>
-    </header>
-    <div class="container mt-5 mb-5">
-        <div class="row">
-            <div class="col-sm-8">
-                <div class="card text-center">
-                    <img class="card-img-top" src="images/gurbani_bg1.jpeg" alt="Card image cap">
-                    <div class="card-body">
-                        <h2>
-                            <a href="/read">Read Gurbani</a>
-                        </h2>
-                        <p class="card-text">Read gurbani is a healing process. Guru's teaching purify your body and soul.</p>
-                        <div class="text-center text-uppercase">
-                            <a href="/read" class="btn btn-default btn-1">Start reading</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card text-center mt-5">
-                    <img class="card-img-top" src="images/gurbnai_kirtan_bg.jpeg" alt="Gurbani Kirtan">
-                    <div class="card-body">
-                        <h2>
-                            <a href="/listen">Gurbani Kirtan</a>
-                        </h2>
-                        <p class="card-text">Listen to gurbani now and get peace within your mind and soul.</p>
-                        <div class="text-center text-uppercase">
-                            <a href="listen" class="btn btn-default btn-1">Start listening</a>
-                        </div>
+        <div class="col-sm-4">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="header-text-1 text-center">SHOULD I SIGN UP</h4>
+                    <p class="card-text">
+                        After signup, you can save your favourites against your account or attend a class.
+                    </p>
+                    <div class="text-center text-uppercase">
+                        <a href="/create" class="btn btn-default btn-1">Sign Up Now</a>
                     </div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="header-text-1 text-uppercase text-center">Recent Kirtan</h4>
-                        <p class="card-text"></p>
-                    </div>
+            <div class="card mt-2">
+                <div class="card-body">
+                    <h4 class="header-text-1 text-center text-uppercase">Gurbani Santhya</h4>
+                    <p class="card-text">
+                        Here you can learn gurbani santhya for accurate pronunciation of gurbani.
+                        All the classes offered here are free of cost.
+                        Find more about gurbani santhya in classes.
+                    </p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
-    <script src="/js/lib.min.js" type="text/javascript"></script>
-  </body>
-</html>
+@endsection
