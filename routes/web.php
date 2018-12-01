@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('home');
 });
+
+Route::resource('videos', 'VideoController');
+
+Route::resource('videos-manager', 'VideoManagerController');

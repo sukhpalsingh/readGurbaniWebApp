@@ -48,3 +48,7 @@ a:hover {
     letter-spacing: 0.5px;
     margin-bottom: 28px;
 }
+
+w-100 {
+    width: 100%;
+}
