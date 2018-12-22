@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\GetVideos::class
     ];
 
     /**
@@ -24,6 +24,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        // $schedule->call(function () {
+        //     dispatch(new App\Jobs\GetYoutubeVideos());
+        // })->everyMinute();
         // $schedule->command('inspire')
         //          ->hourly();
     }
