@@ -1,14 +1,15 @@
-@extends('layouts.app')
+@extends('layouts.video')
 
 @section('content')
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-md-8">
+    <div class="row mt-4">
+        <div class="col-md-8 pl-4">
             <iframe
                 class="w-100"
                 height="400px"
                 src="https://www.youtube.com/embed/{{$video->video_id}}"
+                frameborder="0" 
                 allowfullscreen
             >
             </iframe>

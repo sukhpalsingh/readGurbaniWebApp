@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.video')
 
 @section('content')
 
 <div class="container-fluid">
     <div class="row mt-2">
-        <div class="col-md-12">
+        <div class="col-md-8">
             @foreach ($videos as $video)
             <div class="card mb-2">
                 <div class="card-body">
