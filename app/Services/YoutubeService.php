@@ -27,7 +27,7 @@ class YoutubeService
             'search',
             [
                 'query' => [
-                    'q' => 'gurbani',
+                    'q' => 'gurbani kirtan',
                     'part' => 'snippet',
                     'type' => 'video',
                     'key' => $this->key,
