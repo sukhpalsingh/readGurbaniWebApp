@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\SearchToken;
 use App\Video;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -42,26 +43,42 @@ class YoutubeService
         return [];
     }
 
-    public function getNewVidoes()
+    public function getNewVidoes($query)
     {
         $client = new Client([
             'base_uri' => $this->url,
             'timeout'  => 2.0,
         ]);
+
+        $params = [
+            'query' => [
+                'q' => $query,
+                'part' => 'snippet',
+                'type' => 'video',
+                'key' => $this->key,
+                'order' => 'date',
+                'videoEmbeddable' => 'true',
+                'maxResults' => '50'
+            ]
+        ];
+
+        $searchToken = SearchToken::where('keyword', $query)->first();
+        if (!empty($searchToken)) {
+            if (!empty($searchToken->next_page_token)) {
+                $params['query']['pageToken'] = $searchToken->next_page_token;
+            }
+
+            // finished
+            if (empty($searchToken->next_page_token) && !empty($searchToken->prev_page_token)) {
+                return [];
+            }
+        }
+
+        // pageToken
         $response = $client->request(
             'GET',
             'search',
-            [
-                'query' => [
-                    'q' => 'gurbani kirtan',
-                    'part' => 'snippet',
-                    'type' => 'video',
-                    'key' => $this->key,
-                    'order' => 'date',
-                    'videoEmbeddable' => 'true',
-                    'maxResults' => '50'
-                ]
-            ]
+            $params
         );
 
         $code = $response->getStatusCode();
@@ -74,7 +91,7 @@ class YoutubeService
 
     public function populateNewVideos()
     {
-        $response = $this->getNewVidoes();
+        $response = $this->getNewVidoes('gurbani kirtan');
         if (empty($response)) {
             return;
         }
@@ -103,5 +120,21 @@ class YoutubeService
                 $video->save();
             }
         }
+
+        $searchLog = SearchToken::firstOrCreate([
+            'keyword' => 'gurbani kirtan'
+        ]);
+
+        $searchLog->next_page_token = null;
+        if (!empty($response['nextPageToken'])) { 
+            $searchLog->next_page_token = $response['nextPageToken'];
+        }
+
+        $searchLog->prev_page_token = null;
+        if (!empty($response['prevPageToken'])) { 
+            $searchLog->prev_page_token = $response['prevPageToken'];
+        }
+
+        $searchLog->save();
     }
 }
