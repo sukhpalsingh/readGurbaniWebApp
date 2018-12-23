@@ -21,6 +21,10 @@ class Video extends Model
         'live_broadcast_content',
         'published_at',
         'category',
-        'views'
+        'views',
+        'likes',
+        'dislikes',
+        'favorites',
+        'comments'
     ];
 }

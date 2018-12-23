@@ -13,7 +13,7 @@ class AddVideoStaticsColumns extends Migration
      */
     public function up()
     {
-        DB::table('videos', function (Blueprint $table) {
+        Schema::table('videos', function (Blueprint $table) {
             $table->integer('likes')->default(0);
             $table->integer('dislikes')->default(0);
             $table->integer('favorites')->default(0);
@@ -28,7 +28,7 @@ class AddVideoStaticsColumns extends Migration
      */
     public function down()
     {
-        DB::table('videos', function (Blueprint $table) {
+        Schema::table('videos', function (Blueprint $table) {
             $table->dropColumn('likes');
             $table->dropColumn('dislikes');
             $table->dropColumn('favorites');
