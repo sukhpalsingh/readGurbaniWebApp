@@ -16,6 +16,32 @@ class YoutubeService
         $this->key = env('YOUTUBE_KEY');
     }
 
+    public function getVideoStatistics($id)
+    {
+        $client = new Client([
+            'base_uri' => $this->url,
+            'timeout'  => 2.0,
+        ]);
+        $response = $client->request(
+            'GET',
+            'videos',
+            [
+                'query' => [
+                    'id' => $id,
+                    'part' => 'statistics',
+                    'key' => $this->key,
+                ]
+            ]
+        );
+
+        $code = $response->getStatusCode();
+        if ($code === 200) {
+            return json_decode($response->getBody()->getContents(), true);
+        }
+
+        return [];
+    }
+
     public function getNewVidoes()
     {
         $client = new Client([
@@ -54,7 +80,7 @@ class YoutubeService
         }
 
         foreach ($response['items'] as $item) {
-            Video::firstOrCreate(
+            $video = Video::firstOrCreate(
                 [
                     'video_id' => $item['id']['videoId'],
                     'title' => $item['snippet']['title'],
@@ -65,6 +91,18 @@ class YoutubeService
                     'live_broadcast_content' => $item['snippet']['liveBroadcastContent'],
                 ]
             );
+
+            $statisticsResponse = $this->getVideoStatistics($video->video_id);
+            if (!empty($statisticsResponse)) {
+                dump($statisticsResponse);
+                $statistics = $statisticsResponse['items'][0]['statistics'];
+                $video->views = $statistics['viewCount'];
+                $video->likes = $statistics['likeCount'];
+                $video->dislikes = $statistics['dislikeCount'];
+                $video->favorites = $statistics['favoriteCount'];
+                $video->comments = $statistics['commentCount'];
+                $video->save();
+            }
         }
     }
 }
