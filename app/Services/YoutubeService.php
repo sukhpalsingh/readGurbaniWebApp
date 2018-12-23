@@ -94,7 +94,6 @@ class YoutubeService
 
             $statisticsResponse = $this->getVideoStatistics($video->video_id);
             if (!empty($statisticsResponse)) {
-                dump($statisticsResponse);
                 $statistics = $statisticsResponse['items'][0]['statistics'];
                 $video->views = $statistics['viewCount'];
                 $video->likes = $statistics['likeCount'];
