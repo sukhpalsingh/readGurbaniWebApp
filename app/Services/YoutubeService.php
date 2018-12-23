@@ -112,11 +112,11 @@ class YoutubeService
             $statisticsResponse = $this->getVideoStatistics($video->video_id);
             if (!empty($statisticsResponse)) {
                 $statistics = $statisticsResponse['items'][0]['statistics'];
-                $video->views = $statistics['viewCount'];
-                $video->likes = $statistics['likeCount'];
-                $video->dislikes = $statistics['dislikeCount'];
-                $video->favorites = $statistics['favoriteCount'];
-                $video->comments = $statistics['commentCount'];
+                $video->views = $statistics['viewCount'] ?? 0;
+                $video->likes = $statistics['likeCount'] ?? 0;
+                $video->dislikes = $statistics['dislikeCount'] ?? 0;
+                $video->favorites = $statistics['favoriteCount'] ?? 0;
+                $video->comments = $statistics['commentCount'] ?? 0;
                 $video->save();
             }
         }
