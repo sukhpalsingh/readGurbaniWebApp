@@ -21,6 +21,8 @@
                 </div>
             </div>
             @endforeach
+
+            {{ $videos->links() }}
         </div>
         <div class="col-md-4">
         </div>

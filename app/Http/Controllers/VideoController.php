@@ -14,7 +14,7 @@ class VideoController extends Controller
      */
     public function index()
     {
-        $videos = Video::get();
+        $videos = Video::orderBy('views')->paginate(20);
         return view('videos.index', ['videos' => $videos]);
     }
 
