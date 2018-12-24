@@ -9,6 +9,7 @@
 
     <link href="/css/lib.min.css" rel="stylesheet" type="text/css">
     <link href="/css/app.min.css" rel="stylesheet" type="text/css">
+    @include('layouts.analytics')
   </head>
   <body>
     <header>
