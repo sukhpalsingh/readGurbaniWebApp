@@ -24,9 +24,12 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('videos:get')->everyMinute();
+        $schedule->command('videos:get', ['gurbani kirtan'])->everyFiveMinutes();
+
+        $schedule->command('videos:get', ['gurbani katha'])->everyFiveMinutes();
+
         // $schedule->command('inspire')
-        //          ->hourly();
+        //          ->everyMinute();
     }
 
     /**

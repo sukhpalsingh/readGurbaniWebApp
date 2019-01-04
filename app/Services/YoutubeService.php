@@ -43,8 +43,9 @@ class YoutubeService
         return [];
     }
 
-    public function getNewVidoes($query)
+    public function getNewVidoes($query, $checkDate, $pageToken = '')
     {
+        $date = $checkDate->copy();
         $client = new Client([
             'base_uri' => $this->url,
             'timeout'  => 2.0,
@@ -58,20 +59,14 @@ class YoutubeService
                 'key' => $this->key,
                 'order' => 'date',
                 'videoEmbeddable' => 'true',
-                'maxResults' => '50'
+                'maxResults' => '50',
+                'publishedAfter' => $date->format('Y-m-d') . 'T23:59:59Z',
+                'publishedBefore' => $date->addDay()->format('Y-m-d') . 'T00:00:00Z',
             ]
         ];
 
-        $searchToken = SearchToken::where('keyword', $query)->first();
-        if (!empty($searchToken)) {
-            if (!empty($searchToken->next_page_token)) {
-                $params['query']['pageToken'] = $searchToken->next_page_token;
-            }
-
-            // finished
-            if (empty($searchToken->next_page_token) && !empty($searchToken->prev_page_token)) {
-                return [];
-            }
+        if (!empty($pageToken)) {
+            $params['query']['pageToken'] = $pageToken;
         }
 
         // pageToken
@@ -89,52 +84,67 @@ class YoutubeService
         return [];
     }
 
-    public function populateNewVideos()
+    public function populateNewVideos($keyword = 'gurbani kirtan')
     {
-        $response = $this->getNewVidoes('gurbani kirtan');
-        if (empty($response)) {
-            return;
-        }
-
-        foreach ($response['items'] as $item) {
-            $video = Video::firstOrCreate(
-                [
-                    'video_id' => $item['id']['videoId'],
-                    'title' => $item['snippet']['title'],
-                    'description' => $item['snippet']['description'],
-                    'channel_id' => $item['snippet']['channelId'],
-                    'channel_title' => $item['snippet']['channelTitle'],
-                    'published_at' => new Carbon($item['snippet']['publishedAt']),
-                    'live_broadcast_content' => $item['snippet']['liveBroadcastContent'],
-                ]
-            );
-
-            $statisticsResponse = $this->getVideoStatistics($video->video_id);
-            if (!empty($statisticsResponse)) {
-                $statistics = $statisticsResponse['items'][0]['statistics'];
-                $video->views = $statistics['viewCount'] ?? 0;
-                $video->likes = $statistics['likeCount'] ?? 0;
-                $video->dislikes = $statistics['dislikeCount'] ?? 0;
-                $video->favorites = $statistics['favoriteCount'] ?? 0;
-                $video->comments = $statistics['commentCount'] ?? 0;
-                $video->save();
-            }
+        $searchToken = SearchToken::where('keyword', $keyword)->first();
+        if (!empty($searchToken)) {
+            $date = Carbon::createFromFormat('Y-m-d', $searchToken->prev_page_token);
+        } else {
+            $date = Carbon::createFromFormat('Y-m-d', '2005-12-31');
         }
 
         $searchLog = SearchToken::firstOrCreate([
-            'keyword' => 'gurbani kirtan'
+            'keyword' => $keyword
         ]);
-
-        $searchLog->next_page_token = null;
-        if (!empty($response['nextPageToken'])) { 
-            $searchLog->next_page_token = $response['nextPageToken'];
-        }
-
-        $searchLog->prev_page_token = null;
-        if (!empty($response['prevPageToken'])) { 
-            $searchLog->prev_page_token = $response['prevPageToken'];
-        }
-
+        $searchLog->prev_page_token = $date->copy()->addDay()->format('Y-m-d');
         $searchLog->save();
+
+        $hasNextToken = true;
+        $pageToken = '';
+        while($hasNextToken) {
+            $response = $this->getNewVidoes($keyword, $date, $pageToken);
+            if (empty($response)) {
+                $hasNextToken = false;
+                return;
+            }
+
+            foreach ($response['items'] as $item) {
+                $video = Video::firstOrCreate(
+                    [
+                        'video_id' => $item['id']['videoId'],
+                        'title' => $item['snippet']['title'],
+                        'description' => $item['snippet']['description'],
+                        'channel_id' => $item['snippet']['channelId'],
+                        'channel_title' => $item['snippet']['channelTitle'],
+                        'published_at' => new Carbon($item['snippet']['publishedAt']),
+                        'live_broadcast_content' => $item['snippet']['liveBroadcastContent'],
+                    ]
+                );
+
+                $statisticsResponse = $this->getVideoStatistics($video->video_id);
+                if (!empty($statisticsResponse)) {
+                    $statistics = $statisticsResponse['items'][0]['statistics'];
+                    $video->views = $statistics['viewCount'] ?? 0;
+                    $video->likes = $statistics['likeCount'] ?? 0;
+                    $video->dislikes = $statistics['dislikeCount'] ?? 0;
+                    $video->favorites = $statistics['favoriteCount'] ?? 0;
+                    $video->comments = $statistics['commentCount'] ?? 0;
+                    $video->save();
+                }
+            }
+
+            if (empty($response['nextPageToken'])) {
+                $hasNextToken = false;
+                
+                return;
+            }
+
+            $pageToken = $response['nextPageToken'];
+            if (!empty($response['prevPageToken'])) { 
+                $searchLog->prev_page_token = $response['prevPageToken'];
+            }
+
+            $searchLog->save();
+        }
     }
 }

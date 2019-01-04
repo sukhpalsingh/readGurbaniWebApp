@@ -12,7 +12,7 @@ class GetVideos extends Command
      *
      * @var string
      */
-    protected $signature = 'videos:get';
+    protected $signature = 'videos:get {keyword}';
 
     /**
      * The console command description.
@@ -39,6 +39,6 @@ class GetVideos extends Command
     public function handle()
     {
         $youtubeService = new YoutubeService();
-        $youtubeService->populateNewVideos();
+        $youtubeService->populateNewVideos($this->argument('keyword'));
     }
 }
