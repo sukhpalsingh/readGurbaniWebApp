@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
 
         $schedule->command('videos:get', ['gurbani katha'])->everyFiveMinutes();
 
+        $schedule->command('videos:get', ['akj kirtan'])->everyFiveMinutes();
+
         // $schedule->command('inspire')
         //          ->everyMinute();
     }

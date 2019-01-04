@@ -140,11 +140,6 @@ class YoutubeService
             }
 
             $pageToken = $response['nextPageToken'];
-            if (!empty($response['prevPageToken'])) { 
-                $searchLog->prev_page_token = $response['prevPageToken'];
-            }
-
-            $searchLog->save();
         }
     }
 }
