@@ -61,7 +61,7 @@ class YoutubeService
                 'videoEmbeddable' => 'true',
                 'maxResults' => '50',
                 'publishedAfter' => $date->format('Y-m-d') . 'T23:59:59Z',
-                'publishedBefore' => $date->addDay()->format('Y-m-d') . 'T00:00:00Z',
+                'publishedBefore' => $date->addDays(2)->format('Y-m-d') . 'T00:00:00Z',
             ]
         ];
 
