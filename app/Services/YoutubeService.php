@@ -45,7 +45,6 @@ class YoutubeService
 
     public function getNewVidoes($query, $checkDate, $pageToken = '')
     {
-        $date = $checkDate->copy();
         $client = new Client([
             'base_uri' => $this->url,
             'timeout'  => 2.0,
@@ -60,8 +59,8 @@ class YoutubeService
                 'order' => 'date',
                 'videoEmbeddable' => 'true',
                 'maxResults' => '50',
-                'publishedAfter' => $date->format('Y-m-d') . 'T23:59:59Z',
-                'publishedBefore' => $date->addDays(2)->format('Y-m-d') . 'T00:00:00Z',
+                'publishedAfter' => $checkDate->copy()->subDay()->format('Y-m-d') . 'T23:59:59Z',
+                'publishedBefore' => $checkDate->copy()->addDay()->format('Y-m-d') . 'T00:00:00Z',
             ]
         ];
 
@@ -90,7 +89,7 @@ class YoutubeService
         if (!empty($searchToken)) {
             $date = Carbon::createFromFormat('Y-m-d', $searchToken->prev_page_token);
         } else {
-            $date = Carbon::createFromFormat('Y-m-d', '2005-12-31');
+            $date = Carbon::createFromFormat('Y-m-d', '2007-01-15');
         }
 
         $searchLog = SearchToken::firstOrCreate([
@@ -135,7 +134,6 @@ class YoutubeService
 
             if (empty($response['nextPageToken'])) {
                 $hasNextToken = false;
-                
                 return;
             }
 
