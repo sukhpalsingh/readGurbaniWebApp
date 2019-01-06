@@ -25,6 +25,7 @@ gulp.task('scripts', function() {
 gulp.task('styles', function() {
     gulp.src([
         'node_modules/bootstrap/dist/css/bootstrap.css',
+        'node_modules/@fortawesome/fontawesome-free/css/all.css',
     ])
         .pipe(concat('lib.css')) // concatenation to file lib.css
         .pipe(minifyCSS({keepBreaks:false})) // minifying file
@@ -45,6 +46,9 @@ gulp.task('images', function() {
     // gulp.src('./bower_components/font-awesome/fonts/**/*.{ttf,woff,eof,svg}')
     gulp.src('resources/assets/images/*')
         .pipe(gulp.dest('./public/images/'));
+
+    gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*')
+        .pipe(gulp.dest('./public/webfonts/'));
 });
 
 gulp.task('watcher', function() {
