@@ -17,4 +17,8 @@ Route::get('/', function () {
 
 Route::resource('videos', 'VideoController');
 
+Route::resource('read', 'ReadController');
+
+Route::resource('audios', 'AudioController');
+
 Route::resource('videos-manager', 'VideoManagerController');
