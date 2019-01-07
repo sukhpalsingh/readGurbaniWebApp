@@ -14,12 +14,13 @@
                         <a href="#" class="input-group-text"><i class="fas fa-cog"></i></a>
                     </div>
                     <input
+                        id="search-keyword"
                         type="text"
                         class="form-control input-sm"
                         placeholder=""
                     >
                     <div class="input-group-append">
-                        <a href="#" class="input-group-text"><i class="fas fa-search"></i></a>
+                        <a href="javascript: search.list()" class="input-group-text"><i class="fas fa-search"></i></a>
                     </div>
                 </div>
             </form>
