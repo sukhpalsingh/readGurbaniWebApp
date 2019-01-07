@@ -50,6 +50,9 @@ gulp.task('images', function() {
 
     gulp.src('node_modules/@fortawesome/fontawesome-free/webfonts/*')
         .pipe(gulp.dest('./public/webfonts/'));
+
+    gulp.src('resources/assets/fonts/*')
+        .pipe(gulp.dest('./public/webfonts/'));
 });
 
 gulp.task('watcher', function() {
