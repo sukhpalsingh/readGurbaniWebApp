@@ -2,13 +2,15 @@
 
 @section('content')
 
+<link href="https://fonts.googleapis.com/css?family=Mukta+Mahee" rel="stylesheet">
+
 <header>
     <nav class="navbar navbar-expand-lg navbar-white">
         <div class="container">
             <a class="navbar-brand" href="/">
                 <img src="images/logo.png" style="height: 60px;" /> <span style="font-weight: bold; font-size: 20px;">Gurbani</span>
             </a>
-            <form class="form col-md-4 col-sm-7">
+            <div class="col-md-4 col-sm-7">
                 <div class="input-group">
                     <div class="input-group-append">
                         <a href="#" class="input-group-text"><i class="fas fa-cog"></i></a>
@@ -16,14 +18,16 @@
                     <input
                         id="search-keyword"
                         type="text"
-                        class="form-control input-sm"
+                        class="form-control input-sm punjabi-font-1"
                         placeholder=""
+                        value=""
+                        autocomplete="off"
                     >
                     <div class="input-group-append">
                         <a href="javascript: search.list()" class="input-group-text"><i class="fas fa-search"></i></a>
                     </div>
                 </div>
-            </form>
+            </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas fa-bars"></i>
             </button>
@@ -44,10 +48,25 @@
 
 <div class="container-fluid">
     <div class="row mt-2">
-        <div class="col-md-12" id="content">
+        <div class="col-md-12 text-center" id="content">
         
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#search-keyword').on('keypress', function (e) {
+         if(e.which === 13) {
+             console.log('neter');
+
+            //Disable textbox to prevent multiple submit
+            $(this).attr("disabled", "disabled");
+
+            //Enable the textbox again if needed.
+            $(this).removeAttr("disabled");
+
+            search.list();
+         }
+   });
+</script>
 
 @endsection

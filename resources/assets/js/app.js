@@ -7,9 +7,10 @@ var gurbaniService = {
 var search = {
     list: function() {
         gurbaniService.search($('#search-keyword').val(), function(result) {
+            $('#content').html('searching ...');
             var html = "";
             if (result.count > 0) {
-                html += "<ul class='list-group'>";
+                html += "<ul class='list-group gurmukhi-font-1 mb-2 text-left'>";
                 var total = result.count > 20 ? 20 : result.count;
                 var shabad;
                 for (var i = 0; i < total; i++) {
