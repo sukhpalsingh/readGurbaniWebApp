@@ -3,6 +3,11 @@
     src: url("../webfonts/gurbani-akhar-heavy.ttf");
 }
 
+@font-face {
+    font-family: "GurbaniAkharThick";
+    src: url("../webfonts/gurbani-akhar-thick.ttf");
+}
+
 body {
     background: #f4f4f4;
     color: #444;
@@ -67,10 +72,14 @@ w-100 {
     font-family: 'Mukta Mahee', sans-serif;
 }
 
+.gurmukhi-font-2 {
+    font-family: 'GurbaniAkharThick';
+}
+
 .punjabi-font-1 {
     font-family: 'GurbaniAkharHeavy';
 }
 
 .list-group-item {
-    font-size: 30px;
+    font-size: 26px;
 }
