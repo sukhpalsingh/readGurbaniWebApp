@@ -10,15 +10,14 @@ var search = {
             $('#content').html('searching ...');
             var html = "";
             if (result.count > 0) {
-                html += "<ul class='list-group gurmukhi-font-1 mb-2 text-left'>";
+                html += "<div class='list-group gurmukhi-font-2 mb-2 text-left'>";
                 var total = result.count > 20 ? 20 : result.count;
                 var shabad;
                 for (var i = 0; i < total; i++) {
                     shabad = result.shabads[i].shabad;
-                    console.log(shabad);
-                    html += '<li class="list-group-item">' + shabad.gurmukhi.unicode + '</li>';
+                    html += '<a class="list-group-item" href="/shabads/' + shabad.id + '">' + shabad.gurmukhi.akhar + '</a>';
                 }
-                html += '</ul>';
+                html += '</div>';
             }
             $('#content').html(html);
         });
