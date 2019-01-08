@@ -26,6 +26,10 @@
         <div class="col-md-12 text-center" id="content">
         
         </div>
+        <div class="col-md-12 text-center mt-5 mb-5 d-none" id="navigation">
+            <a href="/shabads/{{ ($id - 1) }}" class="mr-2"><i class="fas fa-2x fa-arrow-circle-left"></i></a>
+            <a href="/shabads/{{ ($id + 1) }}" class="ml-2"><i class="fas fa-2x fa-arrow-circle-right"></i></a>
+        </div>
     </div>
 </div>
 <script type="text/javascript">

@@ -29,8 +29,8 @@ var search = {
 
 var shabad = {
     show: function(id) {
+        $('#content').html('loading ...');
         gurbaniService.shabad(id, function(result) {
-            $('#content').html('loading ...');
             var shabadInfo = result.shabadinfo.raag.akhar;
             shabadInfo += ' (AMg ' + result.shabadinfo.pageno + ')';
             $('#shabad-info').html(shabadInfo);
@@ -50,6 +50,7 @@ var shabad = {
             }
             html += '</div>';
             $('#content').html(html);
+            $('#navigation').removeClass('d-none');
         });
     }
 };
