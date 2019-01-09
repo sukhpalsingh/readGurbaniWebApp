@@ -95,3 +95,14 @@ w-100 {
 .punjabi-font-size {
     font-size: 26px;
 }
+
+.teeka-text {
+    color: #666;
+}
+
+#settings {
+    top: 45px;
+    right: 0;
+    width: 350px;
+    z-index: 2;
+}
