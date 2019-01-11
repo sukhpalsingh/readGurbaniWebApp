@@ -34,9 +34,9 @@ class CreateGurbaniScriptureTables extends Migration
             $table->string('punjabi');
             $table->string('unicode');
             $table->string('english');
-            $table->integer('ang_from');
-            $table->integer('ang_to');
-            $table->string('info_english');
+            $table->integer('ang_from')->nullable();
+            $table->integer('ang_to')->nullable();
+            $table->string('info_english')->nullable();
         });
 
         Schema::create('gurbani_scriptures', function (Blueprint $table) {

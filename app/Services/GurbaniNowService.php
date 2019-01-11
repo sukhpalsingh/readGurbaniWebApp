@@ -75,9 +75,9 @@ class GurbaniNowService
                             'punjabi' => $row['raag']['akhar'],
                             'unicode' => $row['raag']['unicode'],
                             'english' => $row['raag']['english'],
-                            'ang_from' => $row['raag']['startang'],
-                            'ang_to' => $row['raag']['endang'],
-                            'info_english' => $row['raag']['raagwithpage']
+                            'ang_from' => empty($row['raag']['startang']) ? null : $row['raag']['startang'],
+                            'ang_to' => empty($row['raag']['endang']) ? null : $row['raag']['endang'],
+                            'info_english' => empty($row['raag']['raagwithpage']) ? null : $row['raag']['raagwithpage']
                         ]);
                         $raagId = $raag->id;
                     } elseif(!empty($raag)) {
