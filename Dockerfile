@@ -7,9 +7,13 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install apache, PHP, and supplimentary programs. openssh-server, curl, and lynx-cur are for debugging the container.
 RUN apt-get update && apt-get -y upgrade
 
+RUN apt-get -y install curl gnupg libpng-dev build-essential
+
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
     apache2 php7.2 php7.2-mysql php7.2-mbstring php7.2-xml libapache2-mod-php7.2 curl lynx-common lynx \
-    nodejs npm git
+    nodejs git
 
 # Enable apache mods.
 RUN a2enmod php7.2
@@ -29,8 +33,7 @@ ENV APACHE_LOG_DIR /var/log/apache2
 ENV APACHE_LOCK_DIR /var/lock/apache2
 ENV APACHE_PID_FILE /var/run/apache2.pid
 
-RUN curl -sS https://getcomposer.org/installer | php
-RUN mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Expose apache.
 EXPOSE 80
@@ -40,9 +43,6 @@ ADD . /var/www/site
 
 # Update the default apache site with the config we created.
 ADD docker/apache-config.conf /etc/apache2/sites-enabled/000-default.conf
-
-# install dependencies
-RUN composer install
 
 # By default start up apache in the foreground, override with /bin/bash for interative.
 CMD /usr/sbin/apache2ctl -D FOREGROUND
