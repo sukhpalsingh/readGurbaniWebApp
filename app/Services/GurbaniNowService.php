@@ -37,6 +37,13 @@ class GurbaniNowService
         $sources = GurbaniSource::get();
         foreach ($sources as $source) {
             for ($j = 1; $j <= $source->angs; $j++) {
+                // skip ang if already populated
+                if (GurbaniScripture::where('ang', $j)
+                    ->where('gurbani_source_id', $source->id)
+                    ->count() > 0
+                ) {
+                    continue;
+                }
                 $tries = 0;
                 while($tries <= 5) {
                     $data = $this->getAngData($j, $source->identifier);
