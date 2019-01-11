@@ -41,18 +41,19 @@ class CreateGurbaniScriptureTables extends Migration
 
         Schema::create('gurbani_scriptures', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('gurmukhi');
-            $table->string('gurmukhi_unicode');
-            $table->string('translation_punjabi')->nullable();
-            $table->string('translation_punjabi_unicode')->nullable();
-            $table->string('translation_english')->nullable();
-            $table->string('translation_spanish')->nullable();
-            $table->string('transliteration_english');
-            $table->string('transliteration_devanagari');
-            $table->string('first_letters');
-            $table->string('first_letters_unicode');
+            $table->text('gurmukhi');
+            $table->text('gurmukhi_unicode');
+            $table->text('translation_punjabi')->nullable();
+            $table->text('translation_punjabi_unicode')->nullable();
+            $table->text('translation_english')->nullable();
+            $table->text('translation_spanish')->nullable();
+            $table->text('transliteration_english')->nullable();
+            $table->text('transliteration_devanagari')->nullable();
+            $table->text('first_letters');
+            $table->text('first_letters_unicode');
             $table->integer('ang');
             $table->integer('pankti');
+            $table->unsignedInteger('shabad_id');
             $table->unsignedInteger('gurbani_source_id');
             $table->unsignedInteger('gurbani_raag_id')->nullable();
             $table->unsignedInteger('gurbani_writer_id')->nullable();
@@ -70,6 +71,9 @@ class CreateGurbaniScriptureTables extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('gurbani_scriptures');
+        Schema::dropIfExists('gurbani_sources');
+        Schema::dropIfExists('gurbani_writers');
+        Schema::dropIfExists('gurbani_raags');
     }
 }

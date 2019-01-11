@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GurbaniRaag extends Model
+class GurbaniScripture extends Model
 {
     /**
      * Indicates if the model should be timestamped.
@@ -31,6 +31,10 @@ class GurbaniRaag extends Model
         'first_letters',
         'first_letters_unicode',
         'ang',
-        'pankti'
+        'pankti',
+        'shabad_id',
+        'gurbani_source_id',
+        'gurbani_raag_id',
+        'gurbani_writer_id'
     ];
 }
