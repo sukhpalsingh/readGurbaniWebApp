@@ -37,4 +37,20 @@ class GurbaniScripture extends Model
         'gurbani_raag_id',
         'gurbani_writer_id'
     ];
+
+    /**
+     * Get the user that owns the phone.
+     */
+    public function gurbaniRaag()
+    {
+        return $this->belongsTo('App\GurbaniRaag');
+    }
+
+    /**
+     * Get the user that owns the phone.
+     */
+    public function gurbaniWriter()
+    {
+        return $this->belongsTo('App\GurbaniWriter', 'gurbani_writer_id');
+    }
 }

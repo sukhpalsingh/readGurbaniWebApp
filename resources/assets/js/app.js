@@ -152,3 +152,11 @@ var settings = {
         }
     }
 };
+
+var pothis = {
+    list: function() {
+        $.get('/pothis', function(response) {
+            $('#content').html(response);
+        });
+    },
+}

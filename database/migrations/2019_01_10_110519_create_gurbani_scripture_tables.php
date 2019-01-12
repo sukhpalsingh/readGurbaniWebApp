@@ -37,6 +37,9 @@ class CreateGurbaniScriptureTables extends Migration
             $table->integer('ang_from')->nullable();
             $table->integer('ang_to')->nullable();
             $table->string('info_english')->nullable();
+            $table->unsignedInteger('gurbani_source_id');
+
+            $table->foreign('gurbani_source_id')->references('id')->on('gurbani_sources');
         });
 
         Schema::create('gurbani_scriptures', function (Blueprint $table) {

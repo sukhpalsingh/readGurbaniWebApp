@@ -19,6 +19,8 @@ Route::resource('videos', 'VideoController');
 
 Route::resource('read', 'ReadController');
 Route::resource('shabads', 'ShabadController');
+Route::resource('pothis', 'PothiController');
+Route::resource('pothis.sections', 'PothiSectionController');
 
 Route::resource('audios', 'AudioController');
 

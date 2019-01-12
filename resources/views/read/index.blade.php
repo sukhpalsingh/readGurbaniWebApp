@@ -38,7 +38,7 @@
                         <a class="nav-link" href="/"><i class="fas fa-bookmark"></i> Sundar Gutka</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fas fa-book"></i> Pothi Sahib</a>
+                        <a class="nav-link" href="javascript: pothis.list()"><i class="fas fa-book"></i> Pothi Sahib</a>
                     </li>
                 </ul>
             </div>

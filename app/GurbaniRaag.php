@@ -25,6 +25,15 @@ class GurbaniRaag extends Model
         'english',
         'ang_from',
         'ang_to',
-        'info_english'
+        'info_english',
+        'gurbani_source_id'
     ];
+
+    /**
+     * Get the user that owns the phone.
+     */
+    public function gurbaniSource()
+    {
+        return $this->belongsTo('App\GurbaniSource');
+    }
 }
