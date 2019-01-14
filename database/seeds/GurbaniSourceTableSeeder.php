@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\GurbaniSource;
 
 class GurbaniSourceTableSeeder extends Seeder
 {
@@ -43,7 +44,7 @@ class GurbaniSourceTableSeeder extends Seeder
     public function run()
     {
         foreach ($this->data as $row) {
-            DB::table('gurbani_sources')->insert($row);
+            GurbaniSource::firstOrCreate($row);
         }
     }
 }
