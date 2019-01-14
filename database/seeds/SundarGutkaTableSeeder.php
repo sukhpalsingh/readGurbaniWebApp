@@ -7,7 +7,7 @@ class SundarGutkaTableSeeder extends Seeder
 {
     private $data = [
         [
-            'punjabi' => 'Mool Mantar',
+            'punjabi' => 'mUl mMqr',
             'unicode' => null,
             'english' => 'Mool Mantar',
             'order' => 1
