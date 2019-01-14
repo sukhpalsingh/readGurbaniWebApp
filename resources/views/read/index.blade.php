@@ -35,7 +35,7 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav mr-auto mt-3 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="/"><i class="fas fa-bookmark"></i> Sundar Gutka</a>
+                        <a class="nav-link" href="/sundar-gutka"><i class="fas fa-bookmark"></i> Sundar Gutka</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="javascript: pothis.list()"><i class="fas fa-book"></i> Pothi Sahib</a>

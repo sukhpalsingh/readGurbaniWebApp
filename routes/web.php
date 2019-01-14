@@ -21,6 +21,7 @@ Route::resource('read', 'ReadController');
 Route::resource('shabads', 'ShabadController');
 Route::resource('pothis', 'PothiController');
 Route::resource('pothis.sections', 'PothiSectionController');
+Route::resource('sundar-gutka', 'SundarGutkaController');
 
 Route::resource('audios', 'AudioController');
 
