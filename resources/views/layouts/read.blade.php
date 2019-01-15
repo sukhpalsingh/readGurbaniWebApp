@@ -17,7 +17,7 @@
             <nav class="navbar navbar-expand-lg navbar-white">
                 <div class="container">
                     <a class="navbar-brand" href="/">
-                        <img src="images/logo.png" style="height: 60px;" /> <span style="font-weight: bold; font-size: 20px;">Gurbani</span>
+                        <img src="/images/logo.png" style="height: 60px;" /> <span style="font-weight: bold; font-size: 20px;">Gurbani</span>
                     </a>
                     <div class="col-md-4 col-sm-7">
                         <div class="input-group">
