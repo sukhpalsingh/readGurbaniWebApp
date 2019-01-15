@@ -21,7 +21,7 @@ class SundarGutka extends Migration
             $table->integer('order');
         });
 
-        Schema::create('sundar_gutka_shabads', function (Blueprint $table) {
+        Schema::create('sundar_gutka_scriptures', function (Blueprint $table) {
             $table->increments('id');
             $table->string('sundar_gutka_id');
             $table->text('gurmukhi');
@@ -51,6 +51,6 @@ class SundarGutka extends Migration
     public function down()
     {
         Schema::dropIfExists('sundar_gutka');
-        Schema::dropIfExists('sundar_gutka_shabads');
+        Schema::dropIfExists('sundar_gutka_scriptures');
     }
 }
