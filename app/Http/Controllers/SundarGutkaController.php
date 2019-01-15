@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\SundarGutka;
+use App\SundarGutkaScripture;
 use Illuminate\Http\Request;
 
 class SundarGutkaController extends Controller
@@ -16,17 +17,16 @@ class SundarGutkaController extends Controller
     public function index()
     {
         $baanis = SundarGutka::get();
-        return view('sundar-gutka.index', ['baanis' => $baanis]);
-    }
+        $baaniList = [];
+        foreach ($baanis as $baani) {
+            $scripture = $baani->scriptures()->first();
+            $baaniList[] = [
+                'id' => $baani->id,
+                'punjabi' => $baani->punjabi,
+                'shabad-id' => empty($scripture) ? null : $scripture->shabad_id
+            ];
+        }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        return view('sundar-gutka.show', ['id' => $id]);
+        return view('sundar-gutka.index', ['baanis' => $baaniList]);
     }
 }

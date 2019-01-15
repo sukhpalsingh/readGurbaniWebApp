@@ -22,7 +22,10 @@ Route::resource('shabads', 'ShabadController');
 Route::resource('pothis', 'PothiController');
 Route::resource('pothis.sections', 'PothiSectionController');
 Route::resource('sundar-gutka', 'SundarGutkaController');
+Route::resource('sundar-gutka.shabads', 'SundarGutkaShabadController');
 
 Route::resource('audios', 'AudioController');
 
 Route::resource('videos-manager', 'VideoManagerController');
+
+Route::resource('sundar-gutka-import', 'SundarGutkaImportController');

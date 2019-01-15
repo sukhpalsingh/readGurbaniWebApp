@@ -26,4 +26,9 @@ class SundarGutka extends Model
         'unicode',
         'english'
     ];
+
+    public function scriptures()
+    {
+        return $this->hasMany('App\SundarGutkaScripture');
+    }
 }
