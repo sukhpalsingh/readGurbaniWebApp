@@ -5,16 +5,16 @@
 <div class="container-fluid">
     <div class="row mt-2">
         <div class="col-md-12 text-center" id="content">
-            <div class='list-group gurmukhi-font-2 mb-2 text-center'>
+            <div class='list-group mb-2 text-center'>
                 @foreach ($scriptures as $scripture)
                     <div class="mb-2">
-                        <p class="gurmukhi-font-2 gurmukhi-text mb-1" style="font-size: 42px">
+                        <p class="gurmukhi-font-2 gurmukhi-text mb-1">
                             {{ $scripture->gurmukhi }}
                         </p>
-                        <p class="gurmukhi-font-2 teeka-text mb-1" style="font-size: 33px">
+                        <p class="gurmukhi-font-2 teeka-text mb-1">
                             {{ $scripture->translation_punjabi }}
                         </p>
-                        <p class="english-text mb-1 d-none" style="font-size: 32px">
+                        <p class="english-text mb-1">
                             {{ $scripture->translation_english }}
                         </p>
                     </div>
@@ -35,5 +35,11 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    $(document).ready(function() {
+        settings.readUserPreferences();
+        settings.apply();
+    });
+</script>
 
 @endsection

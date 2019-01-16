@@ -60,6 +60,59 @@ class SundarGutkaScriptureTableSeeder extends Seeder
                 FROM gurbani_scriptures
                 WHERE shabad_id = 3374
             )
+            
+            UNION ALL
+
+            (
+                SELECT 7 AS sundar_gutka_id, 1 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id = 1661
+                ORDER BY id
+                LIMIT 4 OFFSET 13
+            )
+
+            UNION ALL
+
+            (
+                SELECT 7 AS sundar_gutka_id, 2 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id = 4686
+            )
+
+            UNION ALL
+
+            (
+                SELECT 7 AS sundar_gutka_id, 3 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id = 2776
+                ORDER BY id
+                LIMIT 1
+                OFFSET 1
+            )
+
+            UNION ALL
+
+            (
+                SELECT 7 AS sundar_gutka_id, 4 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id = 1721
+            )
+
+            UNION ALL
+
+            (
+                SELECT 7 AS sundar_gutka_id, 5 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id >= 40 AND shabad_id <= 48
+            )
+
+            UNION ALL
+
+            (
+                SELECT 11 AS sundar_gutka_id, 1 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id >= 40 AND shabad_id <= 48
+            )
         ) scriptures
         ORDER BY sundar_gutka_id, serial, shabad_id, id
     ";
