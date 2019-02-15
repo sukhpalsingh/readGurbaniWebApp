@@ -15,6 +15,8 @@ class YoutubeService
     private $url = "https://www.googleapis.com/youtube/v3/";
     private $key;
 
+    public $totalCalls = 3;
+
     public function __construct()
     {
         $this->key = env('YOUTUBE_KEY');

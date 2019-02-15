@@ -39,6 +39,9 @@ class GetVideos extends Command
     public function handle()
     {
         $youtubeService = new YoutubeService();
-        $youtubeService->populateNewVideos();
+        while($youtubeService->totalCalls > 0) {
+            $youtubeService->populateNewVideos();
+            $youtubeService->totalCalls--;
+        }
     }
 }
