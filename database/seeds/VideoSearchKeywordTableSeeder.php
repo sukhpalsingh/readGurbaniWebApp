@@ -357,7 +357,7 @@ class VideoSearchKeywordTableSeeder extends Seeder
             VideoSearchKeyword::firstOrCreate($row);
 
             $searchToken = SearchToken::where('keyword', $row['name'])->first();
-            if (!empty($searchToken)) {
+            if (empty($searchToken)) {
                 SearchToken::create([
                     'keyword' => $row['name'],
                     'checked_at' => '2007-01-14'
