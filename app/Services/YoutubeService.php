@@ -118,7 +118,7 @@ class YoutubeService
         $pageToken = '';
         while($hasNextToken) {
             $response = $this->getNewVidoes($searchKeyword->keywords, $checkedDate, $pageToken);
-            if (empty($response)) {
+            if (empty($response || $response['items'])) {
                 $hasNextToken = false;
                 return;
             }
