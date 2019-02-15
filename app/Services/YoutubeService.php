@@ -89,7 +89,7 @@ class YoutubeService
             'params' => json_encode($params),
             'code' => $code,
             'reason' => $reason,
-            'content' => $content
+            'response' => $content
         ]);
 
         if ($code === 200) {
