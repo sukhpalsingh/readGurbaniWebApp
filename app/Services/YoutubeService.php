@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\SearchToken;
+use App\SearchLog;
 use App\Video;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
@@ -76,8 +77,19 @@ class YoutubeService
         );
 
         $code = $response->getStatusCode();
+        $reason = $response->getReasonPhrase();
+        $content = $response->getBody()->getContents();
+
+        //save search log
+        SearchLog::create([
+            'params' => json_encode($params),
+            'code' => $code,
+            'reason' => $reason,
+            'content' => $content
+        ]);
+
         if ($code === 200) {
-            return json_decode($response->getBody()->getContents(), true);
+            return json_decode($content, true);
         }
 
         return [];
@@ -85,23 +97,21 @@ class YoutubeService
 
     public function populateNewVideos($keyword = 'gurbani kirtan')
     {
-        $searchToken = SearchToken::where('keyword', $keyword)->first();
-        if (!empty($searchToken)) {
-            $date = Carbon::createFromFormat('Y-m-d', $searchToken->prev_page_token);
-        } else {
-            $date = Carbon::createFromFormat('Y-m-d', '2007-01-15');
-        }
+        // get token which was updated first
+        $searchToken = SearchToken::orderBy('updated_at', 'ASC')->first();
+        $checkedAtObject = Carbon::createFromFormat('Y-m-d', $searchToken->checked_at);
 
-        $searchLog = SearchToken::firstOrCreate([
-            'keyword' => $keyword
-        ]);
-        $searchLog->prev_page_token = $date->copy()->addDay()->format('Y-m-d');
+        // add day for checking at next date
+        $checkedDate = $checkedAtObject->addDay();
+
+        // save new checking date
+        $searchLog->checked_at = $checkedDate->format('Y-m-d');
         $searchLog->save();
 
         $hasNextToken = true;
         $pageToken = '';
         while($hasNextToken) {
-            $response = $this->getNewVidoes($keyword, $date, $pageToken);
+            $response = $this->getNewVidoes($searchToken->keyword, $checkedDate, $pageToken);
             if (empty($response)) {
                 $hasNextToken = false;
                 return;

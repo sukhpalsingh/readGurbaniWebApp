@@ -3,6 +3,7 @@
 use Illuminate\Database\Seeder;
 
 use App\VideoSearchKeyword;
+use App\SearchToken;
 
 class VideoSearchKeywordTableSeeder extends Seeder
 {
@@ -354,6 +355,14 @@ class VideoSearchKeywordTableSeeder extends Seeder
     {
         foreach($this->data as $row) {
             VideoSearchKeyword::firstOrCreate($row);
+
+            $searchToken = SearchToken::where('keyword', $row['name'])->first();
+            if (!empty($searchToken)) {
+                SearchToken::create([
+                    'keyword' => $row['name'],
+                    'checked_at' => '2007-01-14'
+                ]);
+            }
         }
     }
 }
