@@ -75,8 +75,8 @@ class CreateGurbaniScriptureTables extends Migration
     public function down()
     {
         Schema::dropIfExists('gurbani_scriptures');
+        Schema::dropIfExists('gurbani_raags');
         Schema::dropIfExists('gurbani_sources');
         Schema::dropIfExists('gurbani_writers');
-        Schema::dropIfExists('gurbani_raags');
     }
 }
