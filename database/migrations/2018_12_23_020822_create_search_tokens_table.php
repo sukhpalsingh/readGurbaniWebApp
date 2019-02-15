@@ -16,7 +16,7 @@ class CreateSearchTokensTable extends Migration
         Schema::create('search_tokens', function (Blueprint $table) {
             $table->increments('id');
             $table->string('keyword');
-            $table->string('checked_at')->nullable();
+            $table->date('checked_at')->nullable();
             $table->timestamps();
         });
     }
