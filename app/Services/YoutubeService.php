@@ -5,6 +5,7 @@ namespace App\Services;
 use App\SearchToken;
 use App\SearchLog;
 use App\Video;
+use App\VideoTag;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 
@@ -95,11 +96,13 @@ class YoutubeService
         return [];
     }
 
-    public function populateNewVideos($keyword = 'gurbani kirtan')
+    public function populateNewVideos()
     {
         // get token which was updated first
         $searchToken = SearchToken::orderBy('updated_at', 'ASC')->first();
         $checkedAtObject = Carbon::createFromFormat('Y-m-d', $searchToken->checked_at);
+
+        $searchKeyword = VideoSearchKeyword::where('name', $searchToken->keyword)->first();
 
         // add day for checking at next date
         $checkedDate = $checkedAtObject->addDay();
@@ -129,6 +132,11 @@ class YoutubeService
                         'live_broadcast_content' => $item['snippet']['liveBroadcastContent'],
                     ]
                 );
+
+                VideoTag::firstOrCreate([
+                    'video_id' => $video->id,
+                    'video_search_keyword_id' => $searchKeyword->id,
+                ]);
 
                 $statisticsResponse = $this->getVideoStatistics($video->video_id);
                 if (!empty($statisticsResponse)) {
