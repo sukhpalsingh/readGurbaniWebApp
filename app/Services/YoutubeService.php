@@ -6,6 +6,7 @@ use App\SearchToken;
 use App\SearchLog;
 use App\Video;
 use App\VideoTag;
+use App\VideoSearchKeyword;
 use Carbon\Carbon;
 use GuzzleHttp\Client;
 
@@ -108,13 +109,13 @@ class YoutubeService
         $checkedDate = $checkedAtObject->addDay();
 
         // save new checking date
-        $searchLog->checked_at = $checkedDate->format('Y-m-d');
-        $searchLog->save();
+        $searchToken->checked_at = $checkedDate->format('Y-m-d');
+        $searchToken->save();
 
         $hasNextToken = true;
         $pageToken = '';
         while($hasNextToken) {
-            $response = $this->getNewVidoes($searchToken->keyword, $checkedDate, $pageToken);
+            $response = $this->getNewVidoes($searchKeyword->keywords, $checkedDate, $pageToken);
             if (empty($response)) {
                 $hasNextToken = false;
                 return;
