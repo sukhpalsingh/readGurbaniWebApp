@@ -13,7 +13,7 @@ class CreateVideoSearchKeywords extends Migration
      */
     public function up()
     {
-        Schema::create('videos_search_keywords', function (Blueprint $table) {
+        Schema::create('video_search_keywords', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('keywords');
@@ -27,6 +27,6 @@ class CreateVideoSearchKeywords extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('videos_search_keywords');
+        Schema::dropIfExists('video_search_keywords');
     }
 }
