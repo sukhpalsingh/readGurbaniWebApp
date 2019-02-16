@@ -15,7 +15,21 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::orderBy('views')->paginate(20);
-        return view('videos.index', ['videos' => $videos]);
+        $pagination = [];
+        $pagination['startPage'] = 1;
+        if ($videos->currentPage() / 5 > 0) {
+            $pagination['startPage'] = $videos->currentPage() - (
+                $videos->currentPage() % 5 === 0 ? 4 : ($videos->currentPage() % 5 - 1)
+            );
+        }
+
+        $pagination['endPage'] = $pagination['startPage'] + 4;
+        $pagination['afterEndPage'] = $pagination['endPage'] + 1;
+        if ($pagination['endPage'] > $videos->lastPage()) {
+            $pagination['endPage'] = $pagination['afterEndPage'] = $videos->lastPage();
+        }
+
+        return view('videos.index', ['videos' => $videos, 'pagination' => $pagination]);
     }
 
     /**

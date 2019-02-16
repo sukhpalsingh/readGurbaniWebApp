@@ -22,7 +22,7 @@
             </div>
             @endforeach
 
-            {{ $videos->links() }}
+            {{ $videos->links('pagination.default', ['pagination' => $pagination]) }}
         </div>
         <div class="col-md-4">
         </div>
