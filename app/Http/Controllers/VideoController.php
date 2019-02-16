@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Video;
+use App\VideoSearchKeyword;
 use Illuminate\Http\Request;
 
 class VideoController extends Controller
@@ -15,6 +16,9 @@ class VideoController extends Controller
     public function index()
     {
         $videos = Video::orderBy('views')->paginate(20);
+
+        $artists = VideoSearchKeyword::get(['id', 'name']);
+
         $pagination = [];
         $pagination['startPage'] = 1;
         if ($videos->currentPage() / 5 > 0) {
@@ -29,7 +33,7 @@ class VideoController extends Controller
             $pagination['endPage'] = $pagination['afterEndPage'] = $videos->lastPage();
         }
 
-        return view('videos.index', ['videos' => $videos, 'pagination' => $pagination]);
+        return view('videos.index', ['videos' => $videos, 'pagination' => $pagination, 'artists' => $artists]);
     }
 
     /**
