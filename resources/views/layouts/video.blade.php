@@ -25,10 +25,17 @@
                 <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                     <div class="navbar-nav mr-auto mt-3 mt-lg-0 col-sm-6">
                         <form class="navbar-form" role="search">
-                            <div class="input-group">
-                                <input type="text" class="form-control input-sm" name="q">
-                                <div class="input-group-btn">
-                                    <input type="submit" class="btn btn-default" value="Search">
+                            <div class="input-group input-group-sm">
+                                <input type="text" class="form-control" name="q">
+                                <div class="input-group-prepend">
+                                    <a class="btn btn-secondary" href="/">
+                                        <i class="fas fa-search"></i>
+                                        Search
+                                    </a>
+                                    <a class="btn btn-secondary ml-2" href="javascript: void(0)" onclick="$('#filter-panel').toggleClass('d-none')">
+                                        <i class="fas fa-sliders-h"></i>
+                                        Filters
+                                    </a>
                                 </div>
                             </div>
                         </form>
