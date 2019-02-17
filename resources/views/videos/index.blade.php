@@ -3,27 +3,49 @@
 @section('content')
 
 <div class="container-fluid">
-    <div class="row mt-2">
-        <div id="filter-panel" class="filter-panel col-md-12 p-0">
+    <div id="filter-panel" class="row mt-2 d-none">
+        <div class="filter-panel col-md-12 p-0">
             <div class="panel panel-default">
                 <div class="panel-body pt-2 pb-2">
-                    <form class="form-inline">
+                    <form id="video-filters-form" name="video-filters-form" action="/videos" class="form-inline" method="_GET">
                         <div class="form-group">
                             <label for="upload_date" class="control-label ml-3 mr-2">Upload date</label>
-                            <select id="upload_date" class="form-control">
-                                <option>All Time</option>
-                                <option>Today</option>
-                                <option>This week</option>
-                                <option>This month</option>
-                                <option>This Year</option>
-                            </select>
+                            @include(
+                                'form.select',
+                                [
+                                    'attributes' => [
+                                        'id' => 'upload_date',
+                                        'name' => 'upload_date',
+                                        'onchange' => "$('#video-filters-form').submit();",
+                                    ],
+                                    'options' => [
+                                        ['', 'All Time'],
+                                        ['today', 'Today'],
+                                        ['this_week', 'This week'],
+                                        ['this_month', 'This month'],
+                                        ['this_year', 'This year'],
+                                    ],
+                                    'value' => $formData['upload_date'] ?? ''
+                                ]
+                            )
                         </div>
                         <div class="form-group">
                             <label for="sort_by" class="control-label ml-3 mr-2">Sort By</label>
-                            <select id="sort_by" class="form-control">
-                                <option value="most_recent">Most Recent</option>
-                                <option value="most_viewed">Most Viewed</option>
-                            </select>
+                            @include(
+                                'form.select',
+                                [
+                                    'attributes' => [
+                                        'id' => 'sort_by',
+                                        'name' => 'sort_by',
+                                        'onchange' => "$('#video-filters-form').submit();",
+                                    ],
+                                    'options' => [
+                                        ['most_recent', 'Most Recent'],
+                                        ['most_viewed', 'Most Viewed'],
+                                    ],
+                                    'value' => $formData['sort_by'] ?? ''
+                                ]
+                            )
                         </div>
                     </form>
                 </div>

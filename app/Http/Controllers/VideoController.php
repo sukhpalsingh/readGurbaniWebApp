@@ -13,9 +13,23 @@ class VideoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $videos = Video::orderBy('views')->paginate(20);
+        $formData = $request->all();
+
+        $formData['sort_by'] = $formData['sort_by'] ?? 'most_recent';
+        switch($formData['sort_by']) {
+            case 'most_recent':
+                $videos = Video::orderBy('published_at', 'desc');
+                break;
+
+            case 'most_viewed':
+                $videos = Video::orderBy('views', 'desc')
+                    ->orderBy('published_at', 'desc');
+                break;
+        }
+
+        $videos = $videos->paginate(20);
 
         $artists = VideoSearchKeyword::get(['id', 'name']);
 
@@ -33,7 +47,7 @@ class VideoController extends Controller
             $pagination['endPage'] = $pagination['afterEndPage'] = $videos->lastPage();
         }
 
-        return view('videos.index', ['videos' => $videos, 'pagination' => $pagination, 'artists' => $artists]);
+        return view('videos.index', ['videos' => $videos, 'pagination' => $pagination, 'artists' => $artists, 'formData' => $formData]);
     }
 
     /**
