@@ -31,18 +31,20 @@
             </div>
         </div>
         <div class="col-sm-4">
-            <div class="card">
-                <div class="card-body">
-                    <h4 class="header-text-1 text-center">SHOULD I SIGN UP</h4>
-                    <p class="card-text">
-                        After signup, you can save your favourites against your account or attend a class.
-                    </p>
-                    <div class="text-center text-uppercase">
-                        <a href="/create" class="btn btn-default btn-1">Sign Up Now</a>
+            @if (Auth::guest())
+                <div class="card mb-2">
+                    <div class="card-body">
+                        <h4 class="header-text-1 text-center">SHOULD I SIGN UP</h4>
+                        <p class="card-text">
+                            After signup, you can save your favourites against your account or attend a class.
+                        </p>
+                        <div class="text-center text-uppercase">
+                            <a href="/register" class="btn btn-default btn-1">Sign Up Now</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card mt-2">
+            @endif
+            <div class="card">
                 <div class="card-body">
                     <h4 class="header-text-1 text-center text-uppercase">Gurbani Santhya</h4>
                     <p class="card-text">

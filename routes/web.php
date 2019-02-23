@@ -29,3 +29,7 @@ Route::resource('audios', 'AudioController');
 Route::resource('videos-manager', 'VideoManagerController');
 
 Route::resource('sundar-gutka-import', 'SundarGutkaImportController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
