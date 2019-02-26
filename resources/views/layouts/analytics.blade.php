@@ -1,3 +1,4 @@
+@if (!empty(env('GOOGLE_TRACKING_ID')))
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ env('GOOGLE_TRACKING_ID') }}"></script>
 <script>
@@ -7,4 +8,4 @@
 
   gtag('config', '{{ env('GOOGLE_TRACKING_ID') }}');
 </script>
-
+@endif
