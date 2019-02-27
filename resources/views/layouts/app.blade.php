@@ -40,7 +40,7 @@
                             <a class="nav-link" href="/audios">Listen</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/classes">Classes</a>
+                            <a class="nav-link" href="/learn">Learn</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav mt-3 mt-lg-0 pull-right">

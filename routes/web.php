@@ -33,3 +33,5 @@ Route::resource('sundar-gutka-import', 'SundarGutkaImportController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::resource('learn', 'LearnController');
