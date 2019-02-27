@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSpecialisationTable extends Migration
+class CreateSpecialisationsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateSpecialisationTable extends Migration
      */
     public function up()
     {
-        Schema::create('specialisation', function (Blueprint $table) {
+        Schema::create('specialisations', function (Blueprint $table) {
             $table->increments('id');
             $table->string('punjabi');
             $table->string('english');
@@ -28,6 +28,6 @@ class CreateSpecialisationTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('specialisation');
+        Schema::dropIfExists('specialisations');
     }
 }
