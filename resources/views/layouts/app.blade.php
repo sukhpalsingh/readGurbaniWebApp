@@ -37,7 +37,7 @@
                             <a class="nav-link" href="/videos">Watch</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/audios">Listen</a>
+                            <a class="nav-link" href="/listen">Listen</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/learn">Learn</a>

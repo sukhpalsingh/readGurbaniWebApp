@@ -24,7 +24,7 @@ Route::resource('pothis.sections', 'PothiSectionController');
 Route::resource('sundar-gutka', 'SundarGutkaController');
 Route::resource('sundar-gutka.shabads', 'SundarGutkaShabadController');
 
-Route::resource('audios', 'AudioController');
+Route::resource('listen', 'ListenController');
 
 Route::resource('videos-manager', 'VideoManagerController');
 
