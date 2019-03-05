@@ -26,10 +26,12 @@ Route::resource('sundar-gutka.shabads', 'SundarGutkaShabadController');
 
 Route::resource('videos-manager', 'VideoManagerController');
 
-Route::resource('sundar-gutka-import', 'SundarGutkaImportController');
+// Route::resource('sundar-gutka-import', 'SundarGutkaImportController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('learn', 'LearnController');
+Route::resource('training-manager/courses', 'CourseManagerController');
+Route::resource('training-manager', 'TrainingManagerController');
