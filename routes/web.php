@@ -34,4 +34,6 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('learn', 'LearnController');
 Route::resource('training-manager/courses', 'CourseManagerController');
+Route::resource('training-manager/courses.lessons.videos', 'LessonVideoManagerController');
+Route::resource('training-manager/courses.lessons', 'LessonManagerController');
 Route::resource('training-manager', 'TrainingManagerController');
