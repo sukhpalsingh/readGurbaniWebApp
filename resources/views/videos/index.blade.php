@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-md-8">
+        <div class="col-md-7">
             @foreach ($videos as $video)
             <a href="/videos/{{$video->id}}">
                 <div class="card mb-2">
@@ -75,18 +75,19 @@
 
             {{ $videos->links('pagination.default', ['pagination' => $pagination]) }}
         </div>
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card">
                 <div class="card-header">
                     Artists
                 </div>
                 <div class="card-body">
                     @foreach($artists as $artist)
-                        <p>
-                            <a href="/videos/artists/{{ $artist->videoSearchKeyword->id }}">
+                        <div class="row">
+                            <img src="images/{{ $artist->videoSearchKeyword->getImagePath() }}.jpg" class="img-thumbnail" style="height: 80px; width: 16.6%" />
+                            <a href="/videos/artists/{{ $artist->videoSearchKeyword->id }}" class="col-sm-10 mt-3">
                                 {{ $artist->videoSearchKeyword->name }} <span class="badge badge-pill badge-secondary">{{ $artist->count }}</span>
                             </a>
-                        </p>
+                        </div>
                     @endforeach
                 </div>
             </div>

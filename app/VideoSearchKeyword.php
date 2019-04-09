@@ -30,4 +30,16 @@ class VideoSearchKeyword extends Model
     {
         return $this->hasMany('App\VideoTags');
     }
+
+    /**
+     * Get image path
+     *
+     * @return string
+     */
+    public function getImagePath()
+    {
+        $name = $this->name;
+        $name = str_replace([' ', '(', ')'], ['_', '', ''], $name);
+        return strtolower($name);
+    }
 }
