@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 
 Route::resource('videos', 'VideoController');
+Route::resource('videos/artists', 'ArtistController');
 
 Route::resource('read', 'ReadController');
 Route::resource('shabads', 'ShabadController');

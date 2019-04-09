@@ -30,4 +30,12 @@ class VideoTag extends Model
     {
         return $this->belongsTo('App\VideoSearchKeyword');
     }
+
+    /**
+     * Get the video that owns the video tag.
+     */
+    public function video()
+    {
+        return $this->belongsTo('App\Video');
+    }
 }
