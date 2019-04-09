@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Video;
 use App\VideoSearchKeyword;
+use App\VideoTag;
 use Illuminate\Http\Request;
+use DB;
 
 class VideoController extends Controller
 {
@@ -31,7 +33,10 @@ class VideoController extends Controller
 
         $videos = $videos->paginate(20);
 
-        $artists = VideoSearchKeyword::get(['id', 'name']);
+        $artists = VideoTag::groupBy('video_search_keyword_id')
+            ->select('video_search_keyword_id', DB::raw('count(video_search_keyword_id) as count'))
+            ->orderBy('count', 'desc')
+            ->get(['video_search_keyword_id', 'count']);
 
         $pagination = [];
         $pagination['startPage'] = 1;

@@ -22,4 +22,12 @@ class VideoTag extends Model
         'video_id',
         'video_search_keyword_id'
     ];
+
+    /**
+     * Get the post that owns the comment.
+     */
+    public function videoSearchKeyword()
+    {
+        return $this->belongsTo('App\VideoSearchKeyword');
+    }
 }

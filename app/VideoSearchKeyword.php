@@ -22,4 +22,12 @@ class VideoSearchKeyword extends Model
         'name',
         'keywords'
     ];
+
+    /**
+     * Get the comments for the blog post.
+     */
+    public function videoTags()
+    {
+        return $this->hasMany('App\VideoTags');
+    }
 }

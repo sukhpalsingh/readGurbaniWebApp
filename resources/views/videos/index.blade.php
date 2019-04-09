@@ -83,7 +83,9 @@
                 <div class="card-body">
                     @foreach($artists as $artist)
                         <p>
-                            <a href="/videos/artists/{{ $artist->id }}">{{ $artist->name }}</a>
+                            <a href="/videos/artists/{{ $artist->videoSearchKeyword->id }}">
+                                {{ $artist->videoSearchKeyword->name }} <span class="badge badge-pill badge-secondary">{{ $artist->count }}</span>
+                            </a>
                         </p>
                     @endforeach
                 </div>
