@@ -19,6 +19,7 @@ class GurbaniRaag extends Model
      * @var array
      */
     protected $fillable = [
+        'id',
         'identifier',
         'punjabi',
         'unicode',
