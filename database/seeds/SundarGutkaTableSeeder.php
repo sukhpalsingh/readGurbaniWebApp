@@ -85,83 +85,89 @@ class SundarGutkaTableSeeder extends Seeder
             'order' => 13
         ],
         [
+            'punjabi' => 'Akwl ausqiq',
+            'unicode' => null,
+            'english' => 'Akal Ustat',
+            'order' => 14
+        ],
+        [
             'punjabi' => 'AwrqI',
             'unicode' => null,
             'english' => 'Artee',
-            'order' => 14
+            'order' => 15
         ],
         [
             'punjabi' => 'bwvn AKrI',
             'unicode' => null,
             'english' => 'Bavan Akhri',
-            'order' => 15
+            'order' => 16
         ],
         [
             'punjabi' => 'suKmnI swihb',
             'unicode' => null,
             'english' => 'Sukhmani Sahib',
-            'order' => 16
+            'order' => 17
         ],
         [
             'punjabi' => 'Awsw dI vwr',
             'unicode' => null,
             'english' => 'Asa Di Var',
-            'order' => 17
+            'order' => 18
         ],
         [
             'punjabi' => 'dKxI EAMkwr',
             'unicode' => null,
             'english' => 'Dakhni Onkar',
-            'order' => 18
+            'order' => 19
         ],
         [
             'punjabi' => 'isD gosit',
             'unicode' => null,
             'english' => 'Sidh Gosht',
-            'order' => 19
+            'order' => 20
         ],
         [
             'punjabi' => 'rwmklI kI vwr',
             'unicode' => null,
             'english' => 'Ramkali Ki Vaar',
-            'order' => 20
+            'order' => 21
         ],
         [
             'punjabi' => 'bsMq kI vwr',
             'unicode' => null,
             'english' => 'Basant Ki Vaar',
-            'order' => 21
+            'order' => 22
         ],
         [
             'punjabi' => 'bwrh mwhw mWJ',
             'unicode' => null,
             'english' => 'Barah Maha Majh',
-            'order' => 22
+            'order' => 23
         ],
         [
             'punjabi' => 'lwvW',
             'unicode' => null,
             'english' => 'Lavaa',
-            'order' => 23
+            'order' => 24
         ],
         [
             'punjabi' => 'slok mhlw 9',
             'unicode' => null,
             'english' => 'Salok Mahalla 9',
-            'order' => 24
+            'order' => 25
         ],
         [
             'punjabi' => 'cMfI dI vwr',
             'unicode' => null,
             'english' => 'Chandi Di Vaar',
-            'order' => 25
+            'order' => 26
         ],
         [
             'punjabi' => 'rwgmwlw',
             'unicode' => null,
             'english' => 'Raag Mala',
-            'order' => 26
-        ],
+            'order' => 27
+        ]
     ];
 
     /**
@@ -171,6 +177,7 @@ class SundarGutkaTableSeeder extends Seeder
      */
     public function run()
     {
+        SundarGutka::truncate();
         foreach ($this->data as $row) {
             SundarGutka::firstOrCreate($row);
         }

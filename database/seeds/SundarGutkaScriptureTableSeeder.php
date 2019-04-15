@@ -113,6 +113,14 @@ class SundarGutkaScriptureTableSeeder extends Seeder
                 FROM gurbani_scriptures
                 WHERE shabad_id >= 40 AND shabad_id <= 48
             )
+
+            UNION ALL
+
+            (
+                SELECT 14 AS sundar_gutka_id, 1 as serial, id, gurmukhi, gurmukhi_unicode, translation_punjabi, translation_punjabi_unicode, translation_english, translation_spanish, transliteration_english, transliteration_devanagari, first_letters, first_letters_unicode, ang, pankti, shabad_id, gurbani_source_id, gurbani_raag_id, gurbani_writer_id
+                FROM gurbani_scriptures
+                WHERE shabad_id >= 7425 AND shabad_id <= 7441
+            )
         ) scriptures
         ORDER BY sundar_gutka_id, serial, shabad_id, id
     ";
