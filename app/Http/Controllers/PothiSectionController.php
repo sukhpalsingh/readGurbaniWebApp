@@ -13,11 +13,12 @@ class PothiSectionController extends Controller
     public function index($identifier)
     {
         $gurbaniSource = GurbaniSource::where('identifier', $identifier)->first();
-        $raags = GurbaniRaag::with([
-                'gurbaniSource' => function($query) use ($identifier) {
+        $raags = GurbaniRaag::whereHas(
+                'gurbaniSource',
+                function($query) use ($identifier) {
                     $query->where('identifier', $identifier);
                 }
-            ])
+            )
             ->orderBy('id')
             ->get();
         return view('pothis.sections.index', ['raags' => $raags, 'gurbaniSource' => $gurbaniSource]);
