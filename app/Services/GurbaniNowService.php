@@ -17,7 +17,7 @@ class GurbaniNowService
     {
         $client = new Client([
             'base_uri' => $this->url,
-            'timeout'  => 2.0,
+            'timeout'  => 10.0,
         ]);
         $response = $client->request(
             'GET',
