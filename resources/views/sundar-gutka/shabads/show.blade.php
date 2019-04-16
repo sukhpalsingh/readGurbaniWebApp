@@ -23,11 +23,11 @@
                 <div class="col-md-12 text-center mt-5 mb-5" id="navigation">
     
                     @if (!empty($prevShabad))
-                        <a href="/sundar-gutka/{{ $id }}/shabads/{{ $prevShabad->shabad_id }}" class="mr-2"><i class="fas fa-2x fa-arrow-circle-left"></i></a>
+                        <a href="/sundar-gutka/{{ $id }}/shabads/{{ $prevShabad->serial }}" class="mr-2"><i class="fas fa-2x fa-arrow-circle-left"></i></a>
                     @endif
 
                     @if (!empty($nextShabad))
-                        <a href="/sundar-gutka/{{ $id }}/shabads/{{ $nextShabad->shabad_id }}" class="mr-2"><i class="fas fa-2x fa-arrow-circle-right"></i></a>
+                        <a href="/sundar-gutka/{{ $id }}/shabads/{{ $nextShabad->serial }}" class="mr-2"><i class="fas fa-2x fa-arrow-circle-right"></i></a>
                     @endif
 
                 </div>
