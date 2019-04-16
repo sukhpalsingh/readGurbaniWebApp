@@ -35,6 +35,7 @@ class SundarGutkaScripture extends Model
         'ang',
         'pankti',
         'shabad_id',
+        'serial',
         'gurbani_source_id',
         'gurbani_raag_id',
         'gurbani_writer_id'

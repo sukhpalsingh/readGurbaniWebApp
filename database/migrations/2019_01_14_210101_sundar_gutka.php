@@ -36,6 +36,7 @@ class SundarGutka extends Migration
             $table->text('first_letters_unicode');
             $table->integer('ang');
             $table->integer('pankti');
+            $table->unsignedInteger('serial');
             $table->unsignedInteger('shabad_id');
             $table->unsignedInteger('gurbani_source_id');
             $table->unsignedInteger('gurbani_raag_id')->nullable();
