@@ -13,19 +13,19 @@ class SundarGutkaShabadController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id, $shabadId)
+    public function show($id, $serial)
     {
         $scriptures = SundarGutkaScripture::where('sundar_gutka_id', $id)
-            ->where('shabad_id', $shabadId)->get();
+            ->where('serial', $serial)->get();
 
         $prevShabad = SundarGutkaScripture::where('sundar_gutka_id', $id)
-            ->where('shabad_id', '<', $shabadId)
-            ->orderBy('shabad_id', 'desc')
+            ->where('serial', '<', $serial)
+            ->orderBy('serial', 'desc')
             ->first();
 
         $nextShabad = SundarGutkaScripture::where('sundar_gutka_id', $id)
-            ->where('shabad_id', '>', $shabadId)
-            ->orderBy('shabad_id', 'asc')
+            ->where('serial', '>', $serial)
+            ->orderBy('serial', 'asc')
             ->first();
 
         return view(

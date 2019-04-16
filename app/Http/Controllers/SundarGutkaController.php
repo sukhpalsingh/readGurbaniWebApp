@@ -19,11 +19,13 @@ class SundarGutkaController extends Controller
         $baanis = SundarGutka::get();
         $baaniList = [];
         foreach ($baanis as $baani) {
-            $scripture = $baani->scriptures()->first();
+            $scripture = SundarGutkaScripture::where('sundar_gutka_id', $baani->id)
+                ->orderBy('id', 'asc')
+                ->first();
             $baaniList[] = [
                 'id' => $baani->id,
                 'punjabi' => $baani->punjabi,
-                'shabad-id' => empty($scripture) ? null : $scripture->shabad_id
+                'shabad-id' => empty($scripture) ? null : $scripture->serial
             ];
         }
 
