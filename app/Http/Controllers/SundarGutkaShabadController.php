@@ -16,7 +16,9 @@ class SundarGutkaShabadController extends Controller
     public function show($id, $serial)
     {
         $scriptures = SundarGutkaScripture::where('sundar_gutka_id', $id)
-            ->where('serial', $serial)->get();
+            ->where('serial', $serial)
+            ->orderBy('id', 'asc')
+            ->get();
 
         $prevShabad = SundarGutkaScripture::where('sundar_gutka_id', $id)
             ->where('serial', '<', $serial)
