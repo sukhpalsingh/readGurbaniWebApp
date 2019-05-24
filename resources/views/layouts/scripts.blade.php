@@ -1,0 +1,1 @@
+<script src="{{ mix('/js/lib.js') }}" type="text/javascript"></script>

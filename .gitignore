@@ -8,6 +8,7 @@
 /public/webfonts
 /public/lang
 /public/font
+/public/mix-manifest.json
 /storage/*.key
 /storage
 /vendor

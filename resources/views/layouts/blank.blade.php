@@ -7,12 +7,11 @@
 
     <title>Read Gurbani - Watch Gurbani Kirtan</title>
 
-    <link href="/css/lib.min.css" rel="stylesheet" type="text/css">
-    <link href="/css/app.min.css" rel="stylesheet" type="text/css">
+    @include('layouts.styles')
     @include('layouts.analytics')
   </head>
   <body>
-        <script src="/js/lib.min.js" type="text/javascript"></script>        
+      @include('layouts.scripts')
         @yield ('content')
     </body>
 </html>
