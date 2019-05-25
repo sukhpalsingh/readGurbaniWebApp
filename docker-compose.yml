@@ -2,16 +2,12 @@ version: '3'
 services:
 
   db:
-    image: mysql:5
-    ports:
-      - 3306:3306
-    volumes:
-      - ./db:/var/lib/mysql
+    image: mysql:5.7
     environment:
-      MYSQL_ROOT_PASSWORD: read_gurbani_root_password
-      MYSQL_DATABASE: read_gurbani_db
-      MYSQL_USER: read_gurbami_admin
-      MYSQL_PASSWORD: read_gurbani_password
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: read_gurbani
+      MYSQL_USER: read_gurbami
+      MYSQL_PASSWORD: read_gurbani
 
   web:
     build: .
