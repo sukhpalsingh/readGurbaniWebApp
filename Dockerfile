@@ -19,9 +19,6 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install \
 RUN a2enmod php7.2
 RUN a2enmod rewrite
 
-RUN npm install gulp-cli -g && npm install -g bower
-RUN npm install gulp gulp-uglify gulp-rename gulp-concat gulp-header gulp-minify-css gulp-watch
-
 # Update the PHP.ini file, enable <? ?> tags and quieten logging.
 RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/7.2/apache2/php.ini
 RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_PARSE/" /etc/php/7.2/apache2/php.ini
