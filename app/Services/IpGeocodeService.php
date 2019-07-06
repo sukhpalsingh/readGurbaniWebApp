@@ -10,13 +10,22 @@ class IpGeocodeService
 {
     private $url = "http://ip-api.com/json/";
 
-    public function geocodeIpAddress()
+    public function geocodeIps()
     {
-        $ipLocation = IpLocation::whereNull('country')->first();
-        if (empty($ipLocation)) {
+        $ipLocations = IpLocation::whereNull('country')
+            ->limit(10)
+            ->get();
+        if (empty($ipLocations)) {
             return;
         }
-        
+
+        foreach ($ipLocations as $ipLocation) {
+            $this->geocodeIpAddress($ipLocation);
+        }
+    }
+
+    public function geocodeIpAddress(IpLocation $ipLocation)
+    {
         $client = new Client([
             'base_uri' => $this->url,
             'timeout'  => 10.0,
