@@ -105,6 +105,11 @@ class YoutubeService
         $searchToken = SearchToken::orderBy('updated_at', 'ASC')->first();
         $checkedAtObject = Carbon::createFromFormat('Y-m-d', $searchToken->checked_at);
 
+        // skip checking if the current checking date is tomorrow
+        if ($checkedAtObject->isTomorrow()) {
+            return;
+        }
+
         $searchKeyword = VideoSearchKeyword::where('name', $searchToken->keyword)->first();
 
         // add day for checking at next date
