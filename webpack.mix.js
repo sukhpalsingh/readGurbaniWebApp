@@ -12,28 +12,33 @@ let mix = require('laravel-mix');
  */
 
 mix.scripts(
-      [
-         'node_modules/jquery/dist/jquery.js',
-         'node_modules/what-input/dist/what-input.js',
-         'node_modules/bootstrap/dist/js/bootstrap.js',
-         'resources/assets/js/app.js'
-      ],
-      'public/js/lib.js'
-   )
-   .styles(
-      [
-         'node_modules/bootstrap/dist/css/bootstrap.css',
-        'node_modules/@fortawesome/fontawesome-free/css/all.css',
-      ],
-      'public/css/lib.css'
-   )
-   .styles(
-      [
-         'resources/assets/css/theme.css',
-      ],
-      'public/css/app.css'
-   )
-   .copyDirectory('resources/assets/images', 'public/images')
-   .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts/*', 'public/webfonts')
-   .copyDirectory('resources/assets/fonts/*', 'public/webfonts')
-   ;
+        [
+            'node_modules/jquery/dist/jquery.js',
+            'node_modules/what-input/dist/what-input.js',
+            'node_modules/bootstrap/dist/js/bootstrap.js',
+            'resources/assets/js/app.js'
+        ],
+        'public/js/lib.js'
+    )
+    .styles(
+        [
+            'node_modules/bootstrap/dist/css/bootstrap.css',
+            'node_modules/@fortawesome/fontawesome-free/css/all.css',
+        ],
+        'public/css/lib.css'
+    )
+    .styles(
+        [
+            'resources/assets/css/theme.css',
+        ],
+        'public/css/app.css'
+    )
+    .styles(
+        [
+            'resources/assets/css/dashboard-theme.css',
+        ],
+        'public/css/dashboard.css'
+    )
+    .copyDirectory('resources/assets/images', 'public/images')
+    .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts/*', 'public/webfonts')
+    .copyDirectory('resources/assets/fonts/*', 'public/webfonts');
