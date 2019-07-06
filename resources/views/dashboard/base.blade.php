@@ -1,9 +1,8 @@
 @extends('layouts.base')
 
 @section('layout')
-    <style type="text/css">
-        
-    </style>
+    <link href="{{ mix('/css/dashboard.css') }}" rel="stylesheet" type="text/css">
+    <script src="{{ mix('/js/dashboard.js') }}" type="text/javascript"></script>
     <div class="wrapper">
         <!-- Sidebar -->
         <nav id="sidebar">
@@ -36,6 +35,7 @@
 
                 </div>
             </nav>
+            @yield('content')
         </div>
     </div>
     <script type="text/javascript">
@@ -46,5 +46,4 @@
             });
         });
     </script>
-    @yield('content')
 @endsection

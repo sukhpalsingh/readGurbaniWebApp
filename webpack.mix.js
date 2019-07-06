@@ -20,6 +20,12 @@ mix.scripts(
         ],
         'public/js/lib.js'
     )
+    .scripts(
+        [
+            'node_modules/leaflet/dist/leaflet.js',
+        ],
+        'public/js/dashboard.js'
+    )
     .styles(
         [
             'node_modules/bootstrap/dist/css/bootstrap.css',
@@ -36,9 +42,11 @@ mix.scripts(
     .styles(
         [
             'resources/assets/css/dashboard-theme.css',
+            'node_modules/leaflet/dist/leaflet.css',
         ],
         'public/css/dashboard.css'
     )
     .copyDirectory('resources/assets/images', 'public/images')
+    .copyDirectory('node_modules/leaflet/dist/images', 'public/css/images')
     .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts/*', 'public/webfonts')
     .copyDirectory('resources/assets/fonts/*', 'public/webfonts');
