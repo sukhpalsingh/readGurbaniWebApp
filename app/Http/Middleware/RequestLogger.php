@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Carbon\Carbon;
 use App\RequestLog;
+use App\IpLocation;
 
 class RequestLogger
 {
@@ -29,7 +30,9 @@ class RequestLogger
             'method' => $request->method(),
             'response_time' => time() - $requestTime->timestamp,
         ];
-        RequestLog::create($data);
+        $requestLog = RequestLog::create($data);
+
+        IpLocation::firstOrCreate(['ip' => $requestLog->ip]);
 
         return $next($request);
     }
