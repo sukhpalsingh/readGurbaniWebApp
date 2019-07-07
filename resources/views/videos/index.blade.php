@@ -84,7 +84,7 @@
                     @foreach($artists as $artist)
                         <div class="row">
                             <img src="images/{{ $artist->videoSearchKeyword->getImagePath() }}.jpg" class="img-thumbnail" style="height: 80px; width: 16.6%" />
-                            <a href="/videos/artists/{{ $artist->videoSearchKeyword->id }}" class="col-sm-10 mt-3">
+                            <a href="/artists/{{ $artist->videoSearchKeyword->id }}/videos" class="col-sm-10 mt-3">
                                 {{ $artist->videoSearchKeyword->name }} <span class="badge badge-pill badge-secondary">{{ $artist->count }}</span>
                             </a>
                         </div>
