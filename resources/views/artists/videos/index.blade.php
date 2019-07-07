@@ -7,7 +7,7 @@
         <div class="filter-panel col-md-12 p-0">
             <div class="panel panel-default">
                 <div class="panel-body pt-2 pb-2">
-                    <form id="video-filters-form" name="video-filters-form" action="/videos" class="form-inline" method="_GET">
+                    <form id="video-filters-form" name="video-filters-form" action="/artists/{{ $videoSearchKeyword->id }}/videos" class="form-inline" method="_GET">
                         <div class="form-group">
                             <label for="upload_date" class="control-label ml-3 mr-2">Upload date</label>
                             @include(
@@ -78,6 +78,8 @@
                 </div>
             </a>
             @endforeach
+
+            {{ $videos->links('pagination.default', ['pagination' => $pagination]) }}
         </div>
     </div>
 </div>
