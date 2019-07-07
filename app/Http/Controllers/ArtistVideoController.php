@@ -14,6 +14,6 @@ class ArtistVideoController extends Controller
             ->limit(30)
             ->orderBy('views', 'desc')
             ->get();
-        return view('artists.index', ['videos' => $videos]);
+        return view('artists.videos.index', ['videos' => $videos]);
     }
 }
