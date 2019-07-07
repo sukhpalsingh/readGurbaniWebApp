@@ -6,6 +6,7 @@ use Closure;
 use Carbon\Carbon;
 use App\RequestLog;
 use App\IpLocation;
+use Illuminate\Http\Request;
 
 class RequestLogger
 {
@@ -18,7 +19,7 @@ class RequestLogger
      */
     public function handle($request, Closure $next)
     {
-        if ($request->routeIs('analytics.dashboard')) {
+        if ($request->is('dashboard*')) {
             return $next($request);
         }
 

@@ -15,19 +15,15 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::resource('videos', 'VideoController');
-Route::resource('artists.videos', 'ArtistVideoController');
+Route::resource('videos', 'VideoController', ['only' => ['index', 'show']]);
+Route::resource('artists.videos', 'ArtistVideoController', ['only' => ['index']]);
 
-Route::resource('read', 'ReadController');
-Route::resource('shabads', 'ShabadController');
-Route::resource('pothis', 'PothiController');
-Route::resource('pothis.sections', 'PothiSectionController');
-Route::resource('sundar-gutka', 'SundarGutkaController');
-Route::resource('sundar-gutka.shabads', 'SundarGutkaShabadController');
-
-Route::resource('videos-manager', 'VideoManagerController');
-
-// Route::resource('sundar-gutka-import', 'SundarGutkaImportController');
+Route::resource('read', 'ReadController', ['only' => ['index']]);
+Route::resource('shabads', 'ShabadController', ['only' => ['show']]);
+Route::resource('pothis', 'PothiController', ['only' => ['index']]);
+Route::resource('pothis.sections', 'PothiSectionController', ['only' => ['index', 'show']]);
+Route::resource('sundar-gutka', 'SundarGutkaController', ['only' => ['index']]);
+Route::resource('sundar-gutka.shabads', 'SundarGutkaShabadController', ['only' => ['show']]);
 
 // Auth::routes();
 // Authentication Routes...
@@ -37,12 +33,16 @@ $this->post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('learn', 'LearnController');
-Route::resource('training-manager/courses', 'CourseManagerController');
-Route::resource('training-manager/courses.lessons.videos', 'LessonVideoManagerController');
-Route::resource('training-manager/courses.lessons', 'LessonManagerController');
-Route::resource('training-manager', 'TrainingManagerController');
-
 Route::middleware(['auth'])->group(function() {
-    Route::resource('dashboard', 'DashboardController');
+    Route::resource('dashboard', 'DashboardController', ['only' => 'index']);
+    Route::resource('dashboard/analytics/requests', 'RequestController', ['only' => 'index']);
+
+    Route::resource('learn', 'LearnController');
+    Route::resource('training-manager/courses', 'CourseManagerController');
+    Route::resource('training-manager/courses.lessons.videos', 'LessonVideoManagerController');
+    Route::resource('training-manager/courses.lessons', 'LessonManagerController');
+    Route::resource('training-manager', 'TrainingManagerController');
+
+    Route::resource('videos-manager', 'VideoManagerController');
+    // Route::resource('sundar-gutka-import', 'SundarGutkaImportController');
 });
