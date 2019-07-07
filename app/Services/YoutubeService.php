@@ -101,6 +101,11 @@ class YoutubeService
 
     public function populateNewVideos()
     {
+        //validate key
+        if (empty($this->key)) {
+            return;
+        }
+
         // get token which was updated first
         $searchToken = SearchToken::orderBy('updated_at', 'ASC')->first();
         $checkedAtObject = Carbon::createFromFormat('Y-m-d', $searchToken->checked_at);

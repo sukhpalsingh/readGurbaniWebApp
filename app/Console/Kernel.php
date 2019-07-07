@@ -26,9 +26,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('videos:get')->everyMinute();
+        $schedule->command('videos:get')->everyMinute();
+
         $schedule->call(function() {
             (new IpGeocodeService())->geocodeIps();
+        })->everyMinute();
+
+        $schedule->call(function() {
+            (new App\Services\TagVideoService())->tagVideos();
         })->everyMinute();
 
         // $schedule->command('inspire')
