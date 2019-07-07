@@ -53,14 +53,14 @@
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-md-8">
+        <div class="col-md-7">
             @foreach ($videos as $video)
             <a href="/videos/{{$video->id}}">
                 <div class="card mb-2">
                     <div class="card-body">
                         <div class="row">
                             <div class="col-md-6">
-                                <img class="card-img-top" style="height: 8rem;" src="https://i.ytimg.com/vi/{{$video->video_id}}/mqdefault.jpg" alt="Card image cap">
+                                <img class="card-img-top" style="height: 10rem;" src="https://i.ytimg.com/vi/{{$video->video_id}}/mqdefault.jpg" alt="Card image cap">
                             </div>
                             <div class="col-md-6">
                                 <p class="card-title">{{$video->title}}</p>
