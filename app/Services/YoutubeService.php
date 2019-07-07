@@ -141,10 +141,9 @@ class YoutubeService
                     ]
                 );
 
-                VideoTag::firstOrCreate([
-                    'video_id' => $video->id,
-                    'video_search_keyword_id' => $searchKeyword->id,
-                ]);
+                if ($video->tagged === 0) {
+                    $this->tagVideo();
+                }
 
                 $statisticsResponse = $this->getVideoStatistics($video->video_id);
                 if (!empty($statisticsResponse)) {
@@ -164,6 +163,108 @@ class YoutubeService
             }
 
             $pageToken = $response['nextPageToken'];
+        }
+    }
+
+    public function tagVideo($video)
+    {
+        $videoSearchKeywords = VideoSearchKeyword::get();
+        foreach ($videoSearchKeywords as $videoSearchKeyword) {
+            $createTag = false;
+            $title = strtolower($video->title);
+            $description = strtolower($video->description);
+
+            switch ($videoSearchKeyword->name) {
+                case 'Gurbani Kirtan':
+                    if (
+                        (
+                            strpos($title, 'gurbani') !== false ||
+                            strpos($title, 'shabad') !== false
+                        ) &&
+                        strpos($title, 'kirtan') !== false
+                    ) {
+                        $createTag = true;
+                    } elseif (
+                        (
+                            strpos($description, 'gurbani') !== false ||
+                            strpos($description, 'shabad') !== false
+                        ) &&
+                        strpos($description, 'kirtan') !== false
+                    ) {
+                        $createTag = true;
+                    }
+                    break;
+                
+                case 'Gurbani Kirtan':
+                    if (
+                        (
+                            strpos($title, 'gurbani') !== false ||
+                            strpos($title, 'kirtan') !== false
+                        ) &&
+                        (
+                            strpos($title, 'katha') !== false ||
+                            strpos($title, 'updesh') !== false
+                        )
+                    ) {
+                        $createTag = true;
+                    } elseif (
+                        (
+                            strpos($description, 'gurbani') !== false ||
+                            strpos($description, 'kirtan') !== false
+                        ) &&
+                        (
+                            strpos($description, 'katha') !== false ||
+                            strpos($description, 'updesh') !== false
+                        )
+                    )
+                    break;
+                
+                case "Bhai Tarlochan Singh":
+                    if (
+                        strpos($title, 'Bhai Tarlochan Singh') !== false ||
+                        strpos($title, 'Bhai Trilochan Singh') !== false
+                    ) {
+                        $createTag = true;
+                    } elseif (
+                        strpos($description, 'Bhai Tarlochan Singh') !== false ||
+                        strpos($description, 'Bhai Trilochan Singh') !== false
+                    ) {
+                        $createTag = true;
+                    }
+                    break;
+
+                case "Sant Ranjit Singh (Dhadrian Wale)":
+                    if (
+                        strpos($title, 'Ranjit Singh Dhadrian Wale') !== false ||
+                        strpos($title, 'Ranjit Singh Dhadrianwale') !== false
+                    ) {
+                        $createTag = true;
+                    } elseif (
+                        strpos($description, 'Ranjit Singh Dhadrian Wale') !== false ||
+                        strpos($description, 'Ranjit Singh Dhadrianwale') !== false
+                    ) {
+                        $createTag = true;
+                    }
+                    break;
+
+                default:
+                    if (strpos($title, $videoSearchKeyword->keywords) !== false) {
+                        $createTag = true;
+                    } elseif (strpos($description, $videoSearchKeyword->keywords) !== false) {
+                        $createTag = true;
+                    }
+                    break;
+            }
+
+            if ($createTag) {
+                VideoTag::firstOrCreate([
+                    'video_id' => $video->id,
+                    'video_search_keyword_id' => $videoSearchKeyword->id,
+                ]);
+            }
+
+            $video->tagged = 1;
+            $video->save();
         }
     }
 }
