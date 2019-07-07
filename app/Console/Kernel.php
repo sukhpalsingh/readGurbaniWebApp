@@ -34,7 +34,7 @@ class Kernel extends ConsoleKernel
         })->everyMinute();
 
         $schedule->call(function() {
-            (new App\Services\TagVideoService())->tagVideos();
+            (new TagVideoService())->tagVideos();
         })->everyMinute();
 
         // $schedule->command('inspire')
