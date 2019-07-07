@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\VideoTag;
+use App\VideoSearchKeyword;
 use Illuminate\Http\Request;
 
 class ArtistVideoController extends Controller
@@ -14,6 +15,9 @@ class ArtistVideoController extends Controller
             ->limit(30)
             ->orderBy('views', 'desc')
             ->get();
-        return view('artists.videos.index', ['videos' => $videos]);
+
+        $videoSearchKeyword = VideoSearchKeyword::findOrFail($artistId);
+
+        return view('artists.videos.index', ['videos' => $videos, 'videoSearchKeyword' => $videoSearchKeyword]);
     }
 }
