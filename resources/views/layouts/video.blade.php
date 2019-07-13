@@ -35,6 +35,10 @@
                                         <i class="fas fa-sliders-h"></i>
                                         Filters
                                     </a>
+                                    <a class="btn btn-info ml-2" href="/videos?live=true">
+                                        <i class="fa fa-bolt" aria-hidden="true"></i>
+                                        Live Now
+                                    </a>
                                 </div>
                             </div>
                         </form>

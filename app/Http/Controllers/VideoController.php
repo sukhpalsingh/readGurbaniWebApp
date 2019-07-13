@@ -31,6 +31,11 @@ class VideoController extends Controller
                 break;
         }
 
+        $isLive = isset($formData['live']) ? true : false;
+        if ($isLive) {
+            $videos->where('live_broadcast_content', 'live');
+        }
+
         $videos = $videos->paginate(20);
 
         $artists = VideoTag::groupBy('video_search_keyword_id')
@@ -52,7 +57,20 @@ class VideoController extends Controller
             $pagination['endPage'] = $pagination['afterEndPage'] = $videos->lastPage();
         }
 
-        return view('videos.index', ['videos' => $videos, 'pagination' => $pagination, 'artists' => $artists, 'formData' => $formData]);
+        if ($pagination['afterEndPage'] > $videos->lastPage()) {
+            $pagination['afterEndPage'] = $videos->lastPage();
+        }
+
+        return view(
+            'videos.index',
+            [
+                'videos' => $videos,
+                'pagination' => $pagination,
+                'artists' => $artists,
+                'formData' => $formData,
+                'isLive' => $isLive
+            ]
+        );
     }
 
     /**

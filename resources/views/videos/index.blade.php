@@ -73,7 +73,7 @@
             </a>
             @endforeach
 
-            {{ $videos->links('pagination.default', ['pagination' => $pagination]) }}
+            {{ $videos->links('pagination.default', ['pagination' => $pagination, 'isLive' => $isLive]) }}
         </div>
         <div class="col-md-5">
             <div class="card">
