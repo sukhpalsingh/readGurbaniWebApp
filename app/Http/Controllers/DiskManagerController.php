@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\IpLocation;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class DiskManagerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,12 +13,10 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $ipLocations = IpLocation::get();
         return view(
-            'dashboard.index',
+            'dashboard.disk-manager.index',
             [
-                'ipLocations' => $ipLocations,
-                'tab' => 'analytics'
+                'tab' => 'disk-manager'
             ]
         );
     }

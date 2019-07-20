@@ -11,13 +11,16 @@
             </div>
 
             <ul class="list-unstyled components">
-                <li class="active">
+                <li class="@if($tab === 'analytics' ) active @endif">
                     <a href="#analytics" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Analytics</a>
                     <ul class="collapse list-unstyled" id="analytics">
                         <li>
                             <a href="/dashboard/analytics/requests">Requests</a>
                         </li>
                     </ul>
+                </li>
+                <li class="@if($tab === 'disk-manager' ) active @endif">
+                    <a href="/dashboard/disk-manager">Disk Manager</a>
                 </li>
                 <li>
                     <a href="/">Site</a>

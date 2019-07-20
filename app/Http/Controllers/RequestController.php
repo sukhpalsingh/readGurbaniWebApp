@@ -18,7 +18,8 @@ class RequestController extends Controller
             ->paginate(30);
 
         return view('dashboard.analytics.index', [
-            'requestLogs' => $requestLogs
+            'requestLogs' => $requestLogs,
+            'tab' => 'analytics-requests'
         ]);
     }
 

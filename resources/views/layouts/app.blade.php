@@ -38,6 +38,14 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/learn">Learn</a>
                         </li>
+                        @if (! Auth::guest())
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/dashboard/disk-manager">Dashboard</a>
+                            </li>
+                        @endif
                     </ul>
                     <ul class="navbar-nav mt-3 mt-lg-0 pull-right">
                         @if (Auth::guest())
