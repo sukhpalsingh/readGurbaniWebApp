@@ -34,7 +34,7 @@ class YoutubeService
             [
                 'query' => [
                     'id' => $id,
-                    'part' => 'statistics',
+                    'part' => 'statistics,snippet',
                     'key' => $this->key,
                 ]
             ]
@@ -137,17 +137,19 @@ class YoutubeService
                 $video = Video::firstOrCreate(
                     [
                         'video_id' => $item['id']['videoId'],
-                        'title' => $item['snippet']['title'],
-                        'description' => $item['snippet']['description'],
                         'channel_id' => $item['snippet']['channelId'],
-                        'channel_title' => $item['snippet']['channelTitle'],
-                        'published_at' => new Carbon($item['snippet']['publishedAt']),
-                        'live_broadcast_content' => $item['snippet']['liveBroadcastContent'],
                     ]
                 );
+    
+                $video->channel_title = $item['snippet']['channelTitle'];
+                $video->published_at = new Carbon($item['snippet']['publishedAt']);
+                $video->title = $item['snippet']['title'];
+                $video->description = $item['snippet']['description'];
+                $video->live_broadcast_content = $item['snippet']['liveBroadcastContent'];
+                $video->save();
 
                 if ($video->tagged === 0) {
-                    $this->tagVideo();
+                    $this->tagVideo($video);
                 }
 
                 $statisticsResponse = $this->getVideoStatistics($video->video_id);
@@ -168,6 +170,82 @@ class YoutubeService
             }
 
             $pageToken = $response['nextPageToken'];
+        }
+    }
+
+    public function populateLiveVideos()
+    {
+        //validate key
+        if (empty($this->key)) {
+            return;
+        }
+
+        $client = new Client([
+            'base_uri' => $this->url,
+            'timeout'  => 2.0,
+        ]);
+
+        $params = [
+            'query' => [
+                'q' => '"akj samagam" OR "gurbani kirtan"',
+                'part' => 'snippet',
+                'type' => 'video',
+                'key' => $this->key,
+                'order' => 'date',
+                'eventType' => 'live',
+                'videoEmbeddable' => 'true',
+                'maxResults' => '5',
+            ]
+        ];
+
+        $response = $client->request(
+            'GET',
+            'search',
+            $params
+        );
+
+        $code = $response->getStatusCode();
+        $reason = $response->getReasonPhrase();
+        $content = $response->getBody()->getContents();
+
+        if ($code !== 200) {
+            return;
+        }
+
+        $response = json_decode($content, true);
+        if (empty($response) || empty($response['items'])) {
+            return;
+        }
+
+        foreach ($response['items'] as $item) {
+            $video = Video::firstOrCreate(
+                [
+                    'video_id' => $item['id']['videoId'],
+                    'channel_id' => $item['snippet']['channelId'],
+                ]
+            );
+
+            $video->channel_title = $item['snippet']['channelTitle'];
+            $video->published_at = new Carbon($item['snippet']['publishedAt']);
+            $video->title = $item['snippet']['title'];
+            $video->description = $item['snippet']['description'];
+            $video->live_broadcast_content = $item['snippet']['liveBroadcastContent'];
+            $video->save();
+
+            if ($video->tagged === 0) {
+                $this->tagVideo($video);
+            }
+
+            $statisticsResponse = $this->getVideoStatistics($video->video_id);
+            if (!empty($statisticsResponse)) {
+                $statistics = $statisticsResponse['items'][0]['statistics'];
+                $video->views = $statistics['viewCount'] ?? 0;
+                $video->likes = $statistics['likeCount'] ?? 0;
+                $video->dislikes = $statistics['dislikeCount'] ?? 0;
+                $video->favorites = $statistics['favoriteCount'] ?? 0;
+                $video->comments = $statistics['commentCount'] ?? 0;
+                $video->save();
+            }
         }
     }
 
