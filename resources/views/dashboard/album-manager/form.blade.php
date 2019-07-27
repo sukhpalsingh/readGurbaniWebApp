@@ -5,14 +5,26 @@
 <nav aria-label="breadcrumb">
     <ol class="breadcrumb">
         <li class="breadcrumb-item"><a href="/dashboard/albums-manager">Albums</a></li>
-        <li class="breadcrumb-item active" aria-current="page">New Album</li>
+        <li class="breadcrumb-item active" aria-current="page">
+            @if ($diskAlbum->id > 0)
+                Edit Album
+            @else
+                New Album
+            @endif
+        </li>
     </ol>
 </nav>
 
 <div class="row">
     <div class="col-md-12">
         <div class="card">
-            <div class="card-header text-center bg-info text-white">New Album</div>
+            <div class="card-header text-center bg-info text-white">
+                @if ($diskAlbum->id > 0)
+                    Edit Album
+                @else
+                    New Album
+                @endif
+            </div>
             <div class="card-body">
                 <form name="new-album-form" class="form-horizontal"
                     @if ($diskAlbum->id > 0)
@@ -74,8 +86,23 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-info">Save</button>
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                onclick="if (window.confirm('Are you sure to delete this album?')) { $('#new-album-delete-form').submit(); }"
+                            >Delete</button>
                         </div>
                     </div>
+                </form>
+                <form
+                    id='new-album-delete-form'
+                    name="new-album-delete-form"
+                    action="/dashboard/albums-manager/{{ $diskAlbum->id }}"
+                    method="POST"
+                >
+                    {{ csrf_field() }}
+                    {{ method_field('DELETE') }}
+                    <input type="hidden" name="id" value="{{ $diskAlbum->id }}" />
                 </form>
             </div>
         </div>

@@ -133,6 +133,9 @@ class AlbumManagerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $diskAlbum = DiskAlbum::findOrFail($id);
+        $diskAlbum->delete();
+
+        return redirect('/dashboard/albums-manager')->with('success', 'Album is successfully deleted');
     }
 }
