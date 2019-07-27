@@ -86,6 +86,9 @@
                         <div class="col-sm-2"></div>
                         <div class="col-sm-10">
                             <button type="submit" class="btn btn-info">Save</button>
+                            <a href="/dashboard/albums-manager/{{ $diskAlbum->id }}/cover" class="btn btn-info">
+                                <i class="fas fa-compact-disc fa-1x"></i> Generate Cover
+                            </a>
                             <button
                                 type="button"
                                 class="btn btn-danger"
