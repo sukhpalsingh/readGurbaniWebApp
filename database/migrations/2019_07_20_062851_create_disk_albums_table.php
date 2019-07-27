@@ -18,7 +18,7 @@ class CreateDiskAlbumsTable extends Migration
             $table->string('name_pan')->nullable();
             $table->string('name_eng')->nullable();
             $table->unsignedInteger('disk_category_id');
-            $table->unsignedInteger('disk_genres_id');
+            $table->unsignedInteger('disk_genre_id');
             $table->unsignedInteger('serial');
             $table->timestamps();
         });

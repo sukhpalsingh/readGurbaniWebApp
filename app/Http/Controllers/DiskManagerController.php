@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\DiskAlbum;
 use Illuminate\Http\Request;
 
 class DiskManagerController extends Controller
@@ -13,10 +14,12 @@ class DiskManagerController extends Controller
      */
     public function index()
     {
+        $albums = DiskAlbum::paginate(20);
         return view(
             'dashboard.disk-manager.index',
             [
-                'tab' => 'disk-manager'
+                'tab' => 'disk-manager',
+                'albums' => $albums
             ]
         );
     }

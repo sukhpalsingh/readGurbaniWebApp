@@ -20,7 +20,12 @@
                     </ul>
                 </li>
                 <li class="@if($tab === 'disk-manager' ) active @endif">
-                    <a href="/dashboard/disk-manager">Disk Manager</a>
+                    <a href="#disks-manager" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Disks Manager</a>
+                    <ul class="collapse list-unstyled" id="disks-manager">
+                        <li>
+                            <a href="/dashboard/albums-manager" class="@if($tab === 'albums' ) active @endif">Albums</a>
+                        </li>
+                    </ul>
                 </li>
                 <li>
                     <a href="/">Site</a>
@@ -29,16 +34,18 @@
         </nav>
 
         <div id="content">
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="container-fluid">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col">
+                        <button type="button" id="sidebarCollapse" class="btn btn-sm btn-info">
+                            <i class="fas fa-align-left"></i>
+                        </button>
 
-                    <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                    </button>
-
+                        @yield('buttons')
+                    </div>
                 </div>
-            </nav>
-            @yield('content')
+                @yield('content')
+            </div>
         </div>
     </div>
     <script type="text/javascript">

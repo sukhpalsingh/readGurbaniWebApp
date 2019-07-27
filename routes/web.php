@@ -39,6 +39,8 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('dashboard/disk-manager', 'DiskManagerController');
 
+    Route::resource('dashboard/albums-manager', 'AlbumManagerController');
+
     Route::resource('learn', 'LearnController');
     Route::resource('training-manager/courses', 'CourseManagerController');
     Route::resource('training-manager/courses.lessons.videos', 'LessonVideoManagerController');

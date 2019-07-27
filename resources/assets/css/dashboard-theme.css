@@ -99,6 +99,27 @@ a[aria-expanded="true"] {
     background: #6d7fcc;
 }
 
+/* ---------------------------------------------------
+    Custom Fonts
+----------------------------------------------------- */
+
+@font-face {
+    font-family: 'web-lipi-heavy';
+    src: url('../webfonts/web-lipi-heavy.ttf');
+}
+
+@font-face {
+    font-family: 'prabhki';
+    src: url('../webfonts/prabhki.ttf');
+}
+
+.web-lipi-heavy {
+    font-family: 'web-lipi-heavy';
+}
+
+.prabhki {
+    font-family: 'prabhki';
+}
 
 /* ---------------------------------------------------
     CONTENT STYLE
