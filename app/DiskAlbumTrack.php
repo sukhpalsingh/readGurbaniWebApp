@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class DiskAlbum extends Model
+class DiskAlbumTrack extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -14,13 +14,9 @@ class DiskAlbum extends Model
     protected $fillable = [
         'name_pan',
         'name_eng',
-        'disk_category_id',
-        'disk_genre_id',
+        'duration',
         'serial',
+        'disk_album_id',
+        'disk_artist_id'
     ];
-
-    public function tracks()
-    {
-        return $this->hasMany('App\DiskAlbumTrack');
-    }
 }
