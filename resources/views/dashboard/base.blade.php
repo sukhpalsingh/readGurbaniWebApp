@@ -7,7 +7,7 @@
         <!-- Sidebar -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <img src="images/logo.png" style="height: 60px;" /> <span style="font-weight: bold; font-size: 20px;">Gurbani</span>
+                <img src="/images/logo.png" style="height: 60px;" /> <span style="font-weight: bold; font-size: 20px;">Gurbani</span>
             </div>
 
             <ul class="list-unstyled components">
