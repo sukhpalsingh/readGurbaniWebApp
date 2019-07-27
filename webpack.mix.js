@@ -23,6 +23,7 @@ mix.scripts(
     .scripts(
         [
             'node_modules/leaflet/dist/leaflet.js',
+            'node_modules/svg.js/dist/svg.min.js',
         ],
         'public/js/dashboard.js'
     )
@@ -47,6 +48,7 @@ mix.scripts(
         'public/css/dashboard.css'
     )
     .copyDirectory('resources/assets/images', 'public/images')
+    .copyDirectory('resources/assets/images/artists', 'public/images/artists')
     .copyDirectory('node_modules/leaflet/dist/images', 'public/css/images')
     .copyDirectory('node_modules/@fortawesome/fontawesome-free/webfonts/*', 'public/webfonts')
     .copyDirectory('resources/assets/fonts/*', 'public/webfonts');
