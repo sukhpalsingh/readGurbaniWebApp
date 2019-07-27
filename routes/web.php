@@ -37,8 +37,6 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('dashboard', 'DashboardController', ['only' => 'index']);
     Route::resource('dashboard/analytics/requests', 'RequestController', ['only' => 'index']);
 
-    Route::resource('dashboard/disk-manager', 'DiskManagerController');
-
     Route::resource('dashboard/albums-manager', 'AlbumManagerController');
 
     Route::resource('learn', 'LearnController');
