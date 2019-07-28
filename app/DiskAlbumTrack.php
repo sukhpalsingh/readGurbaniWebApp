@@ -15,6 +15,7 @@ class DiskAlbumTrack extends Model
         'name_pan',
         'name_eng',
         'duration',
+        'url',
         'serial',
         'disk_album_id',
         'disk_artist_id'

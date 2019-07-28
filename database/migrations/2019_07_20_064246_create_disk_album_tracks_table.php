@@ -18,6 +18,7 @@ class CreateDiskAlbumTracksTable extends Migration
             $table->string('name_pan')->nullable();
             $table->string('name_eng')->nullable();
             $table->integer('duration')->nullable();
+            $table->text('url')->nullable();
             $table->unsignedInteger('serial')->default(1);
             $table->unsignedInteger('disk_album_id');
             $table->unsignedInteger('disk_artist_id');
