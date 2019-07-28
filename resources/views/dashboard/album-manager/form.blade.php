@@ -112,5 +112,52 @@
     </div>
 </div>
 
+@if ($diskAlbum->id > 0)
+    <div class="mt-3">
+        <h4>
+            Tracks
+            <a
+                href="/dashboard/albums-manager/{{ $diskAlbum->id }}/tracks/create"
+                class="btn btn-info btn-sm float-right"
+            ><i class="fas fa-plus"></i> Add Track</a>
+        </h4>
+        @if ($tracks->count() === 0)
+            <div class="alert alert-info">
+                No track exists for the album. Add one now.
+            </div>
+        @else
+            <table class="table table-bordered bg-white text-center mt-4">
+                <thead>
+                    <tr>
+                        <th class="web-lipi-heavy">nwm</th>
+                        <th>Name</th>
+                        <th>Duration</th>
+                        <th>Artist</th>
+                        <th>Serial</th>
+                        <th style="width: 10px">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($tracks as $track)
+                        <tr>
+                            <td class="web-lipi-heavy">{{ $track->name_pan }}</td>
+                            <td>{{ $track->name_eng }}</td>
+                            <td>{{ $track->duration }} mins</td>
+                            <td>{{ $track->disk_artist_id }}</td>
+                            <td>{{ $track->serial }}</td>
+                            <td>
+                                <a href="/dashboard/albums-manager/{{ $diskAlbum->id }}/tracks/{{ $track->id }}/edit"
+                                    class="btn btn-link float-right text-secondary"
+                                >
+                                    <i class="far fa-edit"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        @endif
+    </div>
+@endif
 
 @endsection

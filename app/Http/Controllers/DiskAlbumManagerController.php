@@ -91,13 +91,17 @@ class AlbumManagerController extends Controller
      */
     public function edit($id)
     {
+        $diskAlbum = DiskAlbum::find($id);
+        $tracks = $diskAlbum->tracks;
+
         return view(
             'dashboard.album-manager.form',
             [
                 'tab' => 'albums',
                 'categories' => DiskCategory::get(),
                 'genres' => DiskGenre::get(),
-                'diskAlbum' => DiskAlbum::find($id)
+                'diskAlbum' => $diskAlbum,
+                'tracks' => $tracks,
             ]
         );
     }
