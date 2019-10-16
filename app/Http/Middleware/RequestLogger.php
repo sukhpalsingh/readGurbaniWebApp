@@ -27,7 +27,7 @@ class RequestLogger
         $data = [
             'ip' => $request->ip(),
             'url' => $request->fullUrl(),
-            'user_agent' => $_SERVER['HTTP_USER_AGENT'],
+            'user_agent' => $_SERVER['HTTP_USER_AGENT'] ?? null,
             'method' => $request->method(),
             'response_time' => time() - $requestTime->timestamp,
         ];
