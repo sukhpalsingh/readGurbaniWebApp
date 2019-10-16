@@ -110,15 +110,15 @@ class YoutubeService
         $searchToken = SearchToken::orderBy('updated_at', 'ASC')->first();
         $checkedAtObject = Carbon::createFromFormat('Y-m-d', $searchToken->checked_at);
 
-        // skip checking if the current checking date is tomorrow
-        if ($checkedAtObject->isTomorrow()) {
+        // add day for checking at next date
+        $checkedDate = $checkedAtObject->addDay();
+
+        // skip checking if the current checking date is today
+        if ($checkedAtObject->isToday()) {
             return;
         }
 
         $searchKeyword = VideoSearchKeyword::where('name', $searchToken->keyword)->first();
-
-        // add day for checking at next date
-        $checkedDate = $checkedAtObject->addDay();
 
         // save new checking date
         $searchToken->checked_at = $checkedDate->format('Y-m-d');
@@ -187,14 +187,14 @@ class YoutubeService
 
         $params = [
             'query' => [
-                'q' => '"akj samagam" OR "gurbani kirtan"',
+                'q' => '"akj samagam" OR "gurbani kirtan" OR "darbar sahib kirtan" OR "golden temple kirtan"',
                 'part' => 'snippet',
                 'type' => 'video',
                 'key' => $this->key,
                 'order' => 'date',
                 'eventType' => 'live',
                 'videoEmbeddable' => 'true',
-                'maxResults' => '5',
+                'maxResults' => '50',
             ]
         ];
 
@@ -239,6 +239,25 @@ class YoutubeService
             $statisticsResponse = $this->getVideoStatistics($video->video_id);
             if (!empty($statisticsResponse)) {
                 $statistics = $statisticsResponse['items'][0]['statistics'];
+                $video->views = $statistics['viewCount'] ?? 0;
+                $video->likes = $statistics['likeCount'] ?? 0;
+                $video->dislikes = $statistics['dislikeCount'] ?? 0;
+                $video->favorites = $statistics['favoriteCount'] ?? 0;
+                $video->comments = $statistics['commentCount'] ?? 0;
+                $video->save();
+            }
+        }
+    }
+
+    public function updatePreviousLiveVideos()
+    {
+        $liveVideos = Video::where('live_broadcast_content', 'live')
+            ->get();
+        foreach ($liveVideos as $video) {
+            $statisticsResponse = $this->getVideoStatistics($video->video_id);
+            if (! empty($statisticsResponse)) {
+                $video->live_broadcast_content = $statisticsResponse['items'][0]['snippet']['liveBroadcastContent'] ?? 'None';
+                $statistics = $statisticsResponse['items'][0]['statistics'] ?? [];
                 $video->views = $statistics['viewCount'] ?? 0;
                 $video->likes = $statistics['likeCount'] ?? 0;
                 $video->dislikes = $statistics['dislikeCount'] ?? 0;

@@ -4,6 +4,7 @@ namespace App\Console;
 
 use App\Services\IpGeocodeService;
 use App\Services\TagVideoService;
+use App\Services\YoutubeService;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -28,6 +29,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('videos:get')->everyMinute();
+
+        $schedule->call(function() {
+            (new YoutubeService())->updatePreviousLiveVideos();
+            (new YoutubeService())->populateLiveVideos();
+        })->everyTenMinutes();
 
         $schedule->call(function() {
             (new IpGeocodeService())->geocodeIps();
