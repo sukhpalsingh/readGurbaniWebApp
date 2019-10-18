@@ -36,6 +36,7 @@ class VideoController extends Controller
             $videos->where('live_broadcast_content', 'live');
         }
 
+        $videos->where('tagged', true);
         $videos = $videos->paginate(20);
 
         $artists = VideoTag::groupBy('video_search_keyword_id')
