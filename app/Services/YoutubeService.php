@@ -280,56 +280,56 @@ class YoutubeService
                 case 'Gurbani Kirtan':
                     if (
                         (
-                            strpos($title, 'gurbani') !== false ||
-                            strpos($title, 'shabad') !== false
+                            stripos($title, 'gurbani') !== false ||
+                            stripos($title, 'shabad') !== false
                         ) &&
-                        strpos($title, 'kirtan') !== false
+                        stripos($title, 'kirtan') !== false
                     ) {
                         $createTag = true;
                     } elseif (
                         (
-                            strpos($description, 'gurbani') !== false ||
-                            strpos($description, 'shabad') !== false
+                            stripos($description, 'gurbani') !== false ||
+                            stripos($description, 'shabad') !== false
                         ) &&
-                        strpos($description, 'kirtan') !== false
+                        stripos($description, 'kirtan') !== false
                     ) {
                         $createTag = true;
                     }
                     break;
                 
-                case 'Gurbani Kirtan':
+                case 'Gurbani Katha':
                     if (
                         (
-                            strpos($title, 'gurbani') !== false ||
-                            strpos($title, 'kirtan') !== false
+                            stripos($title, 'gurbani') !== false ||
+                            stripos($title, 'kirtan') !== false
                         ) &&
                         (
-                            strpos($title, 'katha') !== false ||
-                            strpos($title, 'updesh') !== false
+                            stripos($title, 'katha') !== false ||
+                            stripos($title, 'updesh') !== false
                         )
                     ) {
                         $createTag = true;
                     } elseif (
                         (
-                            strpos($description, 'gurbani') !== false ||
-                            strpos($description, 'kirtan') !== false
+                            stripos($description, 'gurbani') !== false ||
+                            stripos($description, 'kirtan') !== false
                         ) &&
                         (
-                            strpos($description, 'katha') !== false ||
-                            strpos($description, 'updesh') !== false
+                            stripos($description, 'katha') !== false ||
+                            stripos($description, 'updesh') !== false
                         )
                     )
                     break;
                 
                 case "Bhai Tarlochan Singh":
                     if (
-                        strpos($title, 'Bhai Tarlochan Singh') !== false ||
-                        strpos($title, 'Bhai Trilochan Singh') !== false
+                        stripos($title, 'Bhai Tarlochan Singh') !== false ||
+                        stripos($title, 'Bhai Trilochan Singh') !== false
                     ) {
                         $createTag = true;
                     } elseif (
-                        strpos($description, 'Bhai Tarlochan Singh') !== false ||
-                        strpos($description, 'Bhai Trilochan Singh') !== false
+                        stripos($description, 'Bhai Tarlochan Singh') !== false ||
+                        stripos($description, 'Bhai Trilochan Singh') !== false
                     ) {
                         $createTag = true;
                     }
@@ -337,22 +337,22 @@ class YoutubeService
 
                 case "Sant Ranjit Singh (Dhadrian Wale)":
                     if (
-                        strpos($title, 'Ranjit Singh Dhadrian Wale') !== false ||
-                        strpos($title, 'Ranjit Singh Dhadrianwale') !== false
+                        stripos($title, 'Ranjit Singh Dhadrian Wale') !== false ||
+                        stripos($title, 'Ranjit Singh Dhadrianwale') !== false
                     ) {
                         $createTag = true;
                     } elseif (
-                        strpos($description, 'Ranjit Singh Dhadrian Wale') !== false ||
-                        strpos($description, 'Ranjit Singh Dhadrianwale') !== false
+                        stripos($description, 'Ranjit Singh Dhadrian Wale') !== false ||
+                        stripos($description, 'Ranjit Singh Dhadrianwale') !== false
                     ) {
                         $createTag = true;
                     }
                     break;
 
                 default:
-                    if (strpos($title, $videoSearchKeyword->keywords) !== false) {
+                    if (stripos($title, $videoSearchKeyword->keywords) !== false) {
                         $createTag = true;
-                    } elseif (strpos($description, $videoSearchKeyword->keywords) !== false) {
+                    } elseif (stripos($description, $videoSearchKeyword->keywords) !== false) {
                         $createTag = true;
                     }
                     break;
