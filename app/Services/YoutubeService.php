@@ -337,8 +337,11 @@ class YoutubeService
 
                 case "Sant Ranjit Singh (Dhadrian Wale)":
                     if (
-                        stripos($title, 'Ranjit Singh Dhadrian Wale') !== false ||
-                        stripos($title, 'Ranjit Singh Dhadrianwale') !== false
+                        stripos($title, 'Ranjit Singh') !== false &&
+                        (
+                            stripos($title, 'Dhadrian Wale') !== false ||
+                            stripos($title, 'Dhadrianwale') !== false
+                        )
                     ) {
                         $createTag = true;
                     } elseif (
