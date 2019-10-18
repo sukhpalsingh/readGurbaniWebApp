@@ -11,7 +11,7 @@ class TagVideoService
     {
         $videos = Video::where('tagged', false)
             ->orderBy('id')
-            ->limit(100)
+            ->limit(1000)
             ->get();
 
         foreach ($videos as $video) {
