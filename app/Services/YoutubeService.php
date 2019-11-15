@@ -361,15 +361,20 @@ class YoutubeService
                     break;
             }
 
-            if ($createTag) {
-                VideoTag::firstOrCreate([
-                    'video_id' => $video->id,
-                    'video_search_keyword_id' => $videoSearchKeyword->id,
-                ]);
-            }
-
             $video->tagged = 1;
             $video->save();
+
+            if ($createTag) {
+                $videoTag = VideoTag::where('video_id', $video->id)
+                    ->where('video_search_keyword_id', $videoSearchKeyword->id)
+                    ->first();
+                if (empty($videoTag)) {
+                    VideoTag::create([
+                        'video_id' => $video->id,
+                        'video_search_keyword_id' => $videoSearchKeyword->id,    
+                    ]);
+                }
+            }
         }
     }
 }
