@@ -37,11 +37,11 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function() {
             (new IpGeocodeService())->geocodeIps();
-        })->everyMinute();
+        })->everyThirtyMinutes();
 
         $schedule->call(function() {
             (new TagVideoService())->tagVideos();
-        })->everyMinute();
+        })->everyTenMinutes();
 
         // $schedule->command('inspire')
         //          ->everyMinute();
