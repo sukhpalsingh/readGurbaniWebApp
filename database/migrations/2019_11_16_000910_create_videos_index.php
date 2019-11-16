@@ -13,9 +13,8 @@ class CreateVideosIndex extends Migration
      */
     public function up()
     {
-        Schema::defaultStringLength(191);
         Schema::table('videos', function (Blueprint $table) {
-            $table->index(['video_id', 'video_search_keyword_id']);
+            $table->index(['video_id', 'channel_id']);
         });
     }
 
@@ -26,9 +25,8 @@ class CreateVideosIndex extends Migration
      */
     public function down()
     {
-        Schema::defaultStringLength(191);
         Schema::table('videos', function (Blueprint $table) {
-            $table->dropIndex('video_tags_video_id_video_search_keyword_id_index');
+            $table->dropIndex('video_tags_video_id_channel_id_index');
         });
     }
 }
