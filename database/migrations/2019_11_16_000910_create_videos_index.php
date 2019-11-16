@@ -14,6 +14,9 @@ class CreateVideosIndex extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
+            $table->string('video_id', 55)->change();
+            $table->string('channel_id', 55)->change();
+
             $table->index('video_id');
             $table->index('channel_id');
         });
