@@ -14,7 +14,8 @@ class CreateVideosIndex extends Migration
     public function up()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->index(['video_id', 'channel_id']);
+            $table->index('video_id');
+            $table->index('channel_id');
         });
     }
 
@@ -26,7 +27,8 @@ class CreateVideosIndex extends Migration
     public function down()
     {
         Schema::table('videos', function (Blueprint $table) {
-            $table->dropIndex('video_tags_video_id_channel_id_index');
+            $table->dropIndex('video_tags_video_id_index');
+            $table->dropIndex('video_tags_channel_id_index');
         });
     }
 }
