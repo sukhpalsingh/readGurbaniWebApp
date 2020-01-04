@@ -39,6 +39,7 @@ Route::middleware(['auth'])->group(function() {
 
     Route::resource('dashboard/albums-manager', 'AlbumManagerController');
     Route::resource('dashboard/albums-manager.tracks', 'AlbumTrackManagerController');
+    Route::resource('dashboard/albums-manager.cover', 'AlbumCoverController');
 
     Route::resource('learn', 'LearnController');
     Route::resource('training-manager/courses', 'CourseManagerController');
