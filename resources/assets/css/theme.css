@@ -157,3 +157,17 @@ h4, .h4 {
     font-weight: 600;
     line-height: 1.2em;
 }
+
+.tv .card.active {
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 10px solid #d4c482;
+}
+
+.tv .card {
+    border-radius: 10px 10px 10px 10px;
+    -moz-border-radius: 10px 10px 10px 10px;
+    -webkit-border-radius: 10px 10px 10px 10px;
+    border: 10px solid #f4f3ef;
+}

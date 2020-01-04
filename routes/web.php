@@ -15,6 +15,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+Route::resource('tv', 'TvController', ['only' => 'index']);
+Route::resource('tv/videos', 'TvVideoController', ['only' => ['index', 'show']]);
+
 Route::resource('videos', 'VideoController', ['only' => ['index', 'show']]);
 Route::resource('artists.videos', 'ArtistVideoController', ['only' => ['index']]);
 
